@@ -320,7 +320,14 @@ const StudentDashboard = () => {
                   <Link to="/" className="btn btn-outline-light btn-sm">
                     LogOut
                   </Link>
-                  <a href="https://vivekanandgroup.com/">Official Web</a>
+                  <a
+                    href="https://vivekanandgroup.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className=" text-decoration-none"
+                  >
+                    Official Web
+                  </a>
                 </div>
 
                 {/* Mobile View: 3-dot Dropdown */}
@@ -352,7 +359,14 @@ const StudentDashboard = () => {
                       </Link>
                     </li>
                     <li>
-                      <a href="https://vivekanandgroup.com/">Official Web</a>
+                      <a
+                        href="https://vivekanandgroup.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="dropdown-item text-decoration-none"
+                      >
+                        Official Web
+                      </a>
                     </li>
                   </ul>
                 </div>
