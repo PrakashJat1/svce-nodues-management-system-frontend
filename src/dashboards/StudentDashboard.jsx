@@ -299,24 +299,58 @@ const StudentDashboard = () => {
                   style={{ width: "40px", height: "40px", cursor: "pointer" }}
                   alt="Profile"
                 />
-                <span className="navbar-brand fs-4 text-light mb-0">
+                <span className="navbar-brand fs-5 text-light mb-0">
                   No Dues Management System
                 </span>
               </div>
 
-              {/* Right Section: User Info + Logout */}
-              <div className="d-flex align-items-center gap-3 flex-wrap">
-                <span
-                  className="text-light fs-6 mb-0"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => setUserprofileModal(true)}
-                >
-                  👤 {user.fullName || "Name"}
-                </span>
-                <span className="text-light d-none d-md-inline">|</span>
-                <Link to="/" className="btn btn-outline-light btn-sm">
-                  LogOut
-                </Link>
+              {/* Right Section */}
+              <div className="d-flex align-items-center gap-3">
+                {/* Desktop View: Name + Logout */}
+                <div className="d-none d-md-flex align-items-center gap-3">
+                  <span
+                    className="text-light fs-6 mb-0"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setUserprofileModal(true)}
+                  >
+                    👤 {user.fullName || "Name"}
+                  </span>
+                  <span className="text-light">|</span>
+                  <Link to="/" className="btn btn-outline-light btn-sm">
+                    LogOut
+                  </Link>
+                </div>
+
+                {/* Mobile View: 3-dot Dropdown */}
+                <div className="dropdown d-md-none">
+                  <button
+                    className="btn btn-outline-light"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    ⋮
+                  </button>
+                  <ul
+                    className="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <li>
+                      <button
+                        className="dropdown-item"
+                        onClick={() => setUserprofileModal(true)}
+                      >
+                        👤 Profile
+                      </button>
+                    </li>
+                    <li>
+                      <Link to="/" className="dropdown-item">
+                        🚪 LogOut
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </nav>
