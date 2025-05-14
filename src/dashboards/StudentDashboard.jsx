@@ -372,7 +372,7 @@ const StudentDashboard = () => {
               <div className="row mb-4 align-items-center">
                 <div className="col-12 col-sm-8">
                   <h2 className="fs-3 mb-0">
-                    <i className="fa-solid fa-book me-2"></i> No Dues Status
+                    <i className="fa-solid fa-book me-1"></i> No Dues Status
                   </h2>
                 </div>
                 <div className="col-12 col-sm-4 text-sm-end mt-2 mt-sm-0">
@@ -505,7 +505,7 @@ const StudentDashboard = () => {
         <Modal show={imageModal} onHide={() => setImageModal(false)} centered>
           <div className="text-center w-100 h-100">
             <img
-              src="/src/assets/NDMSlogoWithBG.png"
+              src={logoWithBG}
               className="rounded-2 border border-3 border-success w-100 h-75 "
               alt="Profile Picture"
             />

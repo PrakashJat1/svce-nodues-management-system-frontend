@@ -408,7 +408,7 @@ const AuthorityDasboard = () => {
         <Modal show={imageModal} onHide={() => setImageModal(false)} centered>
           <div className="text-center w-100 h-100">
             <img
-              src="/src/assets/NDMSlogoWithBG.png"
+              src={logoWithBG}
               className="rounded-2 border border-3 border-success w-100 h-75 "
               alt="Profile Picture"
             />
