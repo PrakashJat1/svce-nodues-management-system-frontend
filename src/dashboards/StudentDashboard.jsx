@@ -15,7 +15,6 @@ const StudentDashboard = () => {
   const [nodues, setNodues] = useState([]);
 
   const [authorities, setAuthorities] = useState();
-  const [isClicked,setIsClicked] = useState(false);
 
   //file uploading
   const [selectedDepartment, setSelectedDepartment] = useState("");
@@ -374,14 +373,11 @@ const StudentDashboard = () => {
                   <i className="fa-solid fa-book"></i> No Dues Status
                 </h2>
                 <button
-                  onClick={() => {
-                    setIsClicked(true);
-                    noDuesRequest()
-                  }}
+                  onClick={() => noDuesRequest()}
                   className="btn btn-primary mt-2 mt-sm-0"
-                  disabled={isClicked}
+                  disabled={nodues.length > 0}
                 >
-                  {isClicked ? "Request Sent" : "No Dues Request"}
+                  {nodues.length > 0 ? "Request Sent" : "No Dues Request"}
                 </button>
               </div>
 
