@@ -7,14 +7,14 @@ import RejectedStudentsTable from "../components/AuthorityDashBoardTables/Reject
 import ApprovedStudentsTable from "../components/AuthorityDashBoardTables/ApprovedStudentsTable";
 import DocumentsTable from "../components/AuthorityDashBoardTables/DocumentsTable";
 import api from "../api/axios";
-import logoWithBG from "../assets/NDMSlogoWithBG.png"
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // 🔥 Enables dropdown, modal, collapse, etc.
+import logoWithBG from "../assets/NDMSlogoWithBG.png";
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // 🔥 Enables dropdown, modal, collapse, etc.
 
 const AuthorityDasboard = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("Pending");
   const [user, setUser] = useState(null);
-  const [authority,setAuthority] = useState(null);
+  const [authority, setAuthority] = useState(null);
 
   const [allNoDuesStatus, setAllNoDUesStatus] = useState([]);
   const [allDocumentedStudents, setAllDocumentedStudents] = useState(0);
@@ -41,8 +41,8 @@ const AuthorityDasboard = () => {
       getAllNoDuesStatus(fetchedAuthority);
       countAllDocumentedStudentByAuthority(fetchedAuthority);
 
-      console.log(fetchedAuthority)
-      
+      console.log(fetchedAuthority);
+
       setLoading(false);
     };
 
@@ -52,9 +52,7 @@ const AuthorityDasboard = () => {
   //fetch User from db
   const fecthUserFromDB = async (email) => {
     try {
-      const response = await api.get(
-        `/user/getUserByEmail/${email}`
-      );
+      const response = await api.get(`/user/getUserByEmail/${email}`);
 
       if (response.data != null) {
         toast.success("Successfully updated");
@@ -73,9 +71,7 @@ const AuthorityDasboard = () => {
   //fetch authority from db
   const fecthAuthorityFromDB = async (email) => {
     try {
-      const response = await api.get(
-        `/authority/getAuthorityByEmail/${email}`
-      );
+      const response = await api.get(`/authority/getAuthorityByEmail/${email}`);
 
       if (response.data != null) {
         toast.success("Successfully updated");
@@ -268,18 +264,14 @@ const AuthorityDasboard = () => {
       );
       formData.append("profilePicture", selectedFile);
       try {
-        const response = await api.post(
-          "/user/update",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const response = await api.post("/user/update", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
         if (response.data) {
-          localStorage.setItem("userEmail",editProfileFormData.email);
+          localStorage.setItem("userEmail", editProfileFormData.email);
           fecthAuthorityFromDB(editProfileFormData.email);
 
           setSelectedFile(null);
@@ -298,7 +290,7 @@ const AuthorityDasboard = () => {
 
   if (loading) {
     return <h1>loading.....</h1>;
-  } else 
+  } else
     return (
       <>
         <nav
@@ -319,17 +311,52 @@ const AuthorityDasboard = () => {
             </div>
           </div>
 
-          <div className=" d-flex position-relative align-items-center gap-4 me-3">
-            <span
-              className="text-light fs-2 "
-              onClick={() => setUserprofileModal(true)}
-              style={{ cursor: "pointer" }}
-            >
-              {user.fullName ? user.fullName : "Name"}
-            </span>
-            <Link type="button" className="btn btn-light" to={"/"}>
-              LogOut
-            </Link>
+          {/* Right Section: Desktop and Mobile Combined */}
+          <div className="d-flex align-items-center gap-4 me-3">
+            {/* Desktop View */}
+            <div className="d-none d-md-flex align-items-center gap-3">
+              <span
+                className="text-light fs-5"
+                style={{ cursor: "pointer" }}
+                onClick={() => setUserprofileModal(true)}
+              >
+                {user.fullName || "Name"}
+              </span>
+              <Link type="button" className="btn btn-light btn-sm" to="/">
+                LogOut
+              </Link>
+            </div>
+
+            {/* Mobile View: 3-dot Dropdown using Bootstrap */}
+            <div className="dropdown d-md-none">
+              <button
+                className="btn btn-outline-light"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                ⋮
+              </button>
+              <ul
+                className="dropdown-menu dropdown-menu-end"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => setUserprofileModal(true)}
+                  >
+                    👤 Profile
+                  </button>
+                </li>
+                <li>
+                  <Link to="/" className="dropdown-item">
+                    🚪 LogOut
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
         <div className="first-flex d-flex mt-4 mb-1 ms-4 me-1 justify-content-center gap-4 align-items-center">
@@ -570,7 +597,7 @@ const AuthorityDasboard = () => {
               <Form.Group className="mb-3">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                autoComplete="off"
+                  autoComplete="off"
                   name="password"
                   type="password"
                   placeholder="Password@123"
@@ -638,6 +665,6 @@ const AuthorityDasboard = () => {
         </Modal>
       </>
     );
-  };
+};
 
 export default AuthorityDasboard;

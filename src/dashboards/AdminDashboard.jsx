@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Button, Form, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logoWithBG from "../assets/NDMSlogoWithBG.png"
+import logoWithBG from "../assets/NDMSlogoWithBG.png";
 
 // ag grid
 
@@ -15,8 +15,7 @@ import { ModuleRegistry } from "@ag-grid-community/core";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import api from "../api/axios";
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // 🔥 Enables dropdown, modal, collapse, etc.
-
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // 🔥 Enables dropdown, modal, collapse, etc.
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
@@ -70,7 +69,7 @@ const AdminDashboard = () => {
     }
 
     fetchUser();
-  },[]);
+  }, []);
 
   //Students table
   const [gridApi, setGridApi] = useState(null);
@@ -162,9 +161,7 @@ const AdminDashboard = () => {
   //fetch User from db
   const fecthUserFromDB = async (email) => {
     try {
-      const response = await api.get(
-        `/user/getUserByEmail/${email}`
-      );
+      const response = await api.get(`/user/getUserByEmail/${email}`);
 
       if (response.data != null) {
         toast.success("Successfully updated");
@@ -197,9 +194,7 @@ const AdminDashboard = () => {
   //fetchAllNoDuesStatus
   const fetchAllNoDuesStatus = async () => {
     try {
-      const response = await api.get(
-        "/noduesstatus/getAll"
-      );
+      const response = await api.get("/noduesstatus/getAll");
       if (response) {
         setNoduesstatus(response.data);
         // console.log(response.data);
@@ -213,9 +208,7 @@ const AdminDashboard = () => {
   //authoritiesFecthing
   const authoritiesFecthing = async () => {
     try {
-      const response = await api.get(
-        "/authority/getAll"
-      );
+      const response = await api.get("/authority/getAll");
       if (response) {
         setAuthorities(response.data);
         setTotalAuthorities(response.data.length);
@@ -289,9 +282,7 @@ const AdminDashboard = () => {
   //deleteAuthorityPermanently
   const deleteAuthority = async (email) => {
     try {
-      const response = await api.delete(
-        `/authority/deleteAuthority/${email}`
-      );
+      const response = await api.delete(`/authority/deleteAuthority/${email}`);
       if (response.data) {
         fetchAllUsers();
         authoritiesFecthing();
@@ -425,9 +416,7 @@ const AdminDashboard = () => {
   //activateAllAuthorities
   const activateAllAuthorities = async () => {
     try {
-      const response = await api.put(
-        "/authority/activateAllAuthorities"
-      );
+      const response = await api.put("/authority/activateAllAuthorities");
       if (response.data) {
         authorities.forEach((authority) => (authority.status = 1));
         setAuthorities(authorities);
@@ -444,9 +433,7 @@ const AdminDashboard = () => {
   //suspendAllAuthorities
   const suspendAllAuthorities = async () => {
     try {
-      const response = await api.put(
-        "/authority/suspendAllAuthorities"
-      );
+      const response = await api.put("/authority/suspendAllAuthorities");
       if (response.data) {
         authorities.forEach((authority) => (authority.status = 0));
         setAuthorities(authorities);
@@ -463,9 +450,7 @@ const AdminDashboard = () => {
   //deleteAllAuthorities
   const deleteAllAuthorities = async () => {
     try {
-      const response = await api.put(
-        "/authority/deleteAllAuthorities"
-      );
+      const response = await api.put("/authority/deleteAllAuthorities");
       if (response.data) {
         setAuthorities([]);
         authoritiesFecthing();
@@ -577,15 +562,11 @@ const AdminDashboard = () => {
       );
       formData.append("profilePicture", selectedFile);
       try {
-        const response = await api.post(
-          "/user/update",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const response = await api.post("/user/update", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
         if (response.status === 200 && response.data) {
           fetchAllUsers();
@@ -675,17 +656,51 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className=" d-flex position-relative align-items-center gap-4 me-3">
-            <span
-              className="text-light fs-2 "
-              onClick={() => setUserprofileModal(true)}
-              style={{ cursor: "pointer" }}
-            >
-              {admin ? admin.fullName : "Name"}
-            </span>
-            <Link type="button" className="btn btn-light" to={"/"}>
-              LogOut
-            </Link>
+          <div className="d-flex align-items-center gap-4 me-3">
+            {/* Desktop View */}
+            <div className="d-none d-md-flex align-items-center gap-3">
+              <span
+                className="text-light fs-5"
+                onClick={() => setUserprofileModal(true)}
+                style={{ cursor: "pointer" }}
+              >
+                {admin?.fullName || "Name"}
+              </span>
+              <Link type="button" className="btn btn-light btn-sm" to="/">
+                LogOut
+              </Link>
+            </div>
+
+            {/* Mobile View: 3-dot Dropdown */}
+            <div className="dropdown d-md-none">
+              <button
+                className="btn btn-outline-light"
+                type="button"
+                id="adminDropdownButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                ⋮
+              </button>
+              <ul
+                className="dropdown-menu dropdown-menu-end"
+                aria-labelledby="adminDropdownButton"
+              >
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => setUserprofileModal(true)}
+                  >
+                    👤 Profile
+                  </button>
+                </li>
+                <li>
+                  <Link to="/" className="dropdown-item">
+                    🚪 LogOut
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
 
@@ -1193,7 +1208,7 @@ const AdminDashboard = () => {
               <Form.Group className="mb-3">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                autoComplete="off"
+                  autoComplete="off"
                   type="password"
                   placeholder="Password@123"
                   name="password"
@@ -1208,7 +1223,7 @@ const AdminDashboard = () => {
               <Form.Group className="mb-3">
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
-                autoComplete="off"
+                  autoComplete="off"
                   type="password"
                   placeholder="Password@123"
                   name="confirmpassword"
@@ -1249,10 +1264,12 @@ const AdminDashboard = () => {
                 ) : null}
               </Form.Group>
 
-              <Button variant="secondary" className="me-4">Cancel</Button>
-            <Button variant="primary" type="submit">
-              Save
-            </Button>
+              <Button variant="secondary" className="me-4">
+                Cancel
+              </Button>
+              <Button variant="primary" type="submit">
+                Save
+              </Button>
             </Form>
           </Modal.Body>
         </Modal>
