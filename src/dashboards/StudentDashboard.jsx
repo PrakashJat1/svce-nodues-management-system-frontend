@@ -365,7 +365,7 @@ const StudentDashboard = () => {
                         rel="noopener noreferrer"
                         className="dropdown-item text-decoration-none"
                       >
-                        Official Web
+                       🌐 Official Web
                       </a>
                     </li>
                   </ul>
