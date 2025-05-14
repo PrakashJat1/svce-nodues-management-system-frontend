@@ -372,7 +372,7 @@ const StudentDashboard = () => {
               <div className="row mb-4 align-items-center">
                 <div className="col-12 col-sm-8">
                   <h2 className="fs-3 mb-0">
-                    <i className="fa-solid fa-book me-1"></i> No Dues Status
+                    <i className="fa-solid fa-book"></i> No Dues Status
                   </h2>
                 </div>
                 <div className="col-12 col-sm-4 text-sm-end mt-2 mt-sm-0">
