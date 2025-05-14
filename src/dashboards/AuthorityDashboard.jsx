@@ -8,6 +8,7 @@ import ApprovedStudentsTable from "../components/AuthorityDashBoardTables/Approv
 import DocumentsTable from "../components/AuthorityDashBoardTables/DocumentsTable";
 import api from "../api/axios";
 import logoWithBG from "../assets/NDMSlogoWithBG.png"
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // 🔥 Enables dropdown, modal, collapse, etc.
 
 const AuthorityDasboard = () => {
   const [loading, setLoading] = useState(true);

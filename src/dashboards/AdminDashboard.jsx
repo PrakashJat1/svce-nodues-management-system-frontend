@@ -15,6 +15,8 @@ import { ModuleRegistry } from "@ag-grid-community/core";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import api from "../api/axios";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // 🔥 Enables dropdown, modal, collapse, etc.
+
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
