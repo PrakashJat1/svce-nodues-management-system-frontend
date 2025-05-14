@@ -5,7 +5,7 @@ import { Button, Modal } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import api from "../../api/axios";
-
+import logo from "../../assets/NDMSlogo.png"
 const Register = () => {
   let navigate = useNavigate();
 
@@ -180,7 +180,7 @@ const Register = () => {
       <div className="register d-flex flex-wrap flex-lg-nowrap flex-column flex-lg-row rounded-2 p-lg-3 min-vh-100 justify-content-center align-items-center">
         <div className="first-flex d-flex justify-content-center align-items-center w-sm-25">
           <img
-            src="/src/assets/NDMSlogo.png"
+            src={logo}
             alt="Login Image"
             className="w-50 rounded-5"
           />

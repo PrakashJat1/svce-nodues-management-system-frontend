@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Button, Form, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import logoWithBG from "../assets/NDMSlogoWithBG.png"
 
 // ag grid
 
@@ -663,7 +664,7 @@ const AdminDashboard = () => {
             <div className=" ms-3 me-3 d-flex gap-3 w-10 h-10 align-items-center">
               <img
                 onClick={() => setImageModal(true)}
-                src="/src/assets/NDMSlogoWithBG.png"
+                src={logoWithBG}
                 className="rounded-5 border border-3 "
                 style={{ width: "40px", height: "40px" }}
                 alt="Profile Picture"
@@ -1340,169 +1341,3 @@ const AdminDashboard = () => {
     );
 };
 export default AdminDashboard;
-
-//Comments
-//activatedUsersFetching
-//  const activatedUsersFetching = async () => {
-//   try {
-//     const response = await axios.get("http://localhost:8080/user/activatedusers");
-//     if (response) {
-//       setTotalUsers(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching activatedusers");
-//     console.log("Error in fetching activatedusers", error);
-//   }
-// };
-// //activatedStudentsFetching
-// const activatedStudentsFetching = async () => {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:8080/user/activatedStudents"
-//     );
-//     if (response) {
-//       setTotalStudents(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching activatedStudents");
-//     console.log("Error in fetching activatedStudents", error);
-//   }
-// };
-// //activatedAuthoritiesFetching
-// const activatedAuthoritiesFetching = async () => {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:8080/user/activatedAuthorities"
-//     );
-//     if (response) {
-//       setTotalAuthorities(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching activatedAuthorities");
-//     console.log("Error in fetching activatedAuthorities", error);
-//   }
-// };
-// //suspendedUsersFetching
-// const suspendedUsersFetching = async () => {
-//   try {
-//     const response = await axios.get("http://localhost:8080/user/suspendedUsers");
-//     if (response) {
-//       setTotalUsers(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching suspendedUsers");
-//     console.log("Error in fetching suspendedUsers", error);
-//   }
-// };
-// //suspendedStudentsFetching
-// const suspendedStudentsFetching = async () => {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:8080/user/suspendedStudents"
-//     );
-//     if (response) {
-//       setTotalStudents(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching suspendedStudents");
-//     console.log("Error in fetching suspendedStudents", error);
-//   }
-// };
-// //suspendedAuthoritiesFetching
-// const suspendedAuthoritiesFetching = async () => {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:8080/user/suspendedAuthorities"
-//     );
-//     if (response) {
-//       setTotalAuthorities(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching suspendedAuthorities");
-//     console.log("Error in fetching suspendedAuthorities", error);
-//   }
-// };
-// //fetching users students
-// const totalUsersFetching = async () => {
-//   try {
-//     const response = await axios.get("http://localhost:8080/user/totalUsers");
-//     if (response) {
-//       setTotalUsers(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching total users");
-//     console.log("Error in fetching total users", error);
-//   }
-// };
-// //fetching total students
-// const totalStudentsFetching = async () => {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:8080/user/totalStudents"
-//     );
-//     if (response) {
-//       setTotalStudents(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching total students");
-//     console.log("Error in fetching total students", error);
-//   }
-// };
-// //totalAuthoritiesFetching
-// const totalAuthoritiesFetching = async () => {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:8080/user/totalAuthorities"
-//     );
-//     if (response) {
-//       setTotalAuthorities(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching total authorities");
-//     console.log("Error in fetching total authorities", error);
-//   }
-// };
-//noduesClearedFetching
-// const noduesClearedFetching = async () => {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:8080/noduesstatus/totalClearedNoDues"
-//     );
-//     if (response) {
-//       setNoDuesCleared(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching noduesClearedFetching");
-//     console.log("Error in fetching noduesClearedFetching", error);
-//   }
-// };
-//pendingRequests
-// const pendingRequestsFetching = async () => {
-//   try {
-//     const response = await axios.get(
-//       "http://localhost:8080/noduesstatus/totalPendingRequests"
-//     );
-//     if (response) {
-//       setPendingRequests(response.data);
-//       return response.data;
-//     }
-//   } catch (error) {
-//     toast.error("Error in fetching totalpendingRequests");
-//     console.log("Error in fetching totalpendingRequests", error);
-//   }
-// };
-//toggleauthoritystatus
-// const [activateUsers, setActivateusers] = useState(0);
-// const [totalStudents, setTotalStudents] = useState(0);
-// const [noduesCleared, setNoDuesCleared] = useState(0);
-// const [pendingRequests, setPendingRequests] = useState(0);

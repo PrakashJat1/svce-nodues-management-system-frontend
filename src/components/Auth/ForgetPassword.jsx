@@ -4,6 +4,7 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../api/axios";
+import logo from "../../assets/NDMSlogo.png"
 
 const ForgetPassword = () => {
   let navigate = useNavigate("");
@@ -68,7 +69,7 @@ const ForgetPassword = () => {
       <div className="login d-flex flex-wrap flex-lg-nowrap flex-column flex-lg-row rounded-2 p-lg-3 min-vh-100 justify-content-center align-items-center">
         <div className="first-flex d-flex flex-column justify-content-center align-items-center">
           <img
-            src="/src/assets/NDMSlogo.png"
+            src={logo}
             alt="Login Image"
             className="w-50 rounded-5"
           />

@@ -7,6 +7,7 @@ import RejectedStudentsTable from "../components/AuthorityDashBoardTables/Reject
 import ApprovedStudentsTable from "../components/AuthorityDashBoardTables/ApprovedStudentsTable";
 import DocumentsTable from "../components/AuthorityDashBoardTables/DocumentsTable";
 import api from "../api/axios";
+import logoWithBG from "../assets/NDMSlogoWithBG.png"
 
 const AuthorityDasboard = () => {
   const [loading, setLoading] = useState(true);
@@ -307,7 +308,7 @@ const AuthorityDasboard = () => {
             <div className=" ms-3 me-3 d-flex gap-3 w-10 h-10 align-items-center">
               <img
                 onClick={() => setImageModal(true)}
-                src="/src/assets/NDMSlogoWithBG.png"
+                src={logoWithBG}
                 className="rounded-5 border border-3"
                 style={{ width: "40px", height: "40px" }}
                 alt="Profile Picture"
