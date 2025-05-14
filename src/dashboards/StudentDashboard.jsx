@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // 🔥 Enables dropdown, modal, collapse, etc.
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // 🔥 Enables dropdown, modal, collapse, etc.
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
@@ -320,6 +320,7 @@ const StudentDashboard = () => {
                   <Link to="/" className="btn btn-outline-light btn-sm">
                     LogOut
                   </Link>
+                  <a href="https://vivekanandgroup.com/">Official Web</a>
                 </div>
 
                 {/* Mobile View: 3-dot Dropdown */}
@@ -349,6 +350,9 @@ const StudentDashboard = () => {
                       <Link to="/" className="dropdown-item">
                         🚪 LogOut
                       </Link>
+                    </li>
+                    <li>
+                      <a href="https://vivekanandgroup.com/">Official Web</a>
                     </li>
                   </ul>
                 </div>
