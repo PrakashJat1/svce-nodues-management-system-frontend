@@ -323,7 +323,7 @@ const AuthorityDasboard = () => {
                 {user.fullName || "Name"}
               </span>
               <Link type="button" className="btn btn-light btn-sm" to="/">
-                LogOut
+               🚪 LogOut
               </Link>
             </div>
 

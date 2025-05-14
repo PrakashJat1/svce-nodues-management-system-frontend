@@ -318,15 +318,15 @@ const StudentDashboard = () => {
                   </span>
                   <span className="text-light">|</span>
                   <Link to="/" className="btn btn-outline-light btn-sm">
-                    LogOut
+                   🚪 LogOut
                   </Link>
                   <a
                     href="https://vivekanandgroup.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className=" text-decoration-none"
+                    className=" text-decoration-none text-light"
                   >
-                    Official Web
+                   🌐 Official Web
                   </a>
                 </div>
 
