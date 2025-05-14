@@ -286,12 +286,12 @@ const StudentDashboard = () => {
     return (
       <>
         <div className="container-fluid p-0">
-          {/* Navbar */}
           <nav
             className="navbar navbar-expand-lg bg-dark border-bottom border-body rounded w-100"
             data-bs-theme="dark"
           >
             <div className="container-fluid d-flex justify-content-between align-items-center">
+              {/* Left Section: Logo + Title */}
               <div className="d-flex align-items-center gap-3">
                 <img
                   onClick={() => setImageModal(true)}
@@ -300,19 +300,21 @@ const StudentDashboard = () => {
                   style={{ width: "40px", height: "40px", cursor: "pointer" }}
                   alt="Profile"
                 />
-                <span className="navbar-brand fs-4 text-light">
+                <span className="navbar-brand fs-4 text-light mb-0">
                   No Dues Management System
                 </span>
               </div>
-              <div className="d-flex flex-column flex-sm-row gap-2 align-items-center">
+
+              {/* Right Section: User Info + Logout */}
+              <div className="d-flex align-items-center gap-3 flex-wrap">
                 <span
-                  className="text-light fs-6"
-                  onClick={() => setUserprofileModal(true)}
+                  className="text-light fs-6 mb-0"
                   style={{ cursor: "pointer" }}
+                  onClick={() => setUserprofileModal(true)}
                 >
-                  {user.fullName || "Name"}
+                  👤 {user.fullName || "Name"}
                 </span>
-                <p className="text-light fs-4 d-none d-sm-block">|</p>
+                <span className="text-light d-none d-md-inline">|</span>
                 <Link to="/" className="btn btn-outline-light btn-sm">
                   LogOut
                 </Link>
@@ -367,17 +369,18 @@ const StudentDashboard = () => {
             {/* No Dues Section */}
             <div className="col-12 col-md-8 col-lg-9 bg-light rounded shadow-sm p-4">
               {/* No Dues Overview */}
-              <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-                <h2 className="fs-3">
-                  <i className="fa-solid fa-book me-2"></i> No Dues Status
-                  Overview
-                </h2>
-                <button
-                  onClick={noDuesRequest}
-                  className="btn btn-primary mt-2 mt-sm-0"
-                >
-                  No Dues Request
-                </button>
+              <div className="row mb-4 align-items-center">
+                <div className="col-12 col-sm-8">
+                  <h2 className="fs-3 mb-0">
+                    <i className="fa-solid fa-book me-2"></i> No Dues Status
+                    Overview
+                  </h2>
+                </div>
+                <div className="col-12 col-sm-4 text-sm-end mt-2 mt-sm-0">
+                  <button onClick={noDuesRequest} className="btn btn-primary">
+                    No Dues Request
+                  </button>
+                </div>
               </div>
 
               {/* Responsive Table */}
