@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { Modal, Form, Button } from "react-bootstrap";
 import api from "../api/axios";
-import logoWithBG from "../assets/NDMSlogoWithBG.png"
+import logoWithBG from "../assets/NDMSlogoWithBG.png";
 
 const StudentDashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -55,9 +55,7 @@ const StudentDashboard = () => {
   //fetch User from db
   const fecthUserFromDB = async (email) => {
     try {
-      const response = await api.get(
-        `/user/getUserByEmail/${email}`
-      );
+      const response = await api.get(`/user/getUserByEmail/${email}`);
 
       if (response.data != null) {
         setUser(response.data);
@@ -74,9 +72,7 @@ const StudentDashboard = () => {
   //fetchingStudentFromDB
   const fetchingStudentFromDB = async (email) => {
     try {
-      const response = await api.get(
-        `/students/getStudentByEmail/${email}`
-      );
+      const response = await api.get(`/students/getStudentByEmail/${email}`);
       setStudent(response.data);
       return response.data;
     } catch (error) {
@@ -97,9 +93,7 @@ const StudentDashboard = () => {
   //give no dues request
   const noDuesRequest = async () => {
     if (student) {
-      let response = await api.get(
-        `/noduesstatus/request/${student.id}`
-      );
+      let response = await api.get(`/noduesstatus/request/${student.id}`);
 
       console.log(response.data);
       if (!response.data) {
@@ -114,9 +108,7 @@ const StudentDashboard = () => {
   //authoritiesFecthing
   const authoritiesFecthing = async () => {
     try {
-      const response = await api.get(
-        "/authority/getAll"
-      );
+      const response = await api.get("/authority/getAll");
       if (response) {
         setAuthorities(response.data);
         // console.log(response.data);
@@ -164,15 +156,11 @@ const StudentDashboard = () => {
       formData.append("department", selectedDepartment);
       formData.append("studentId", student.id);
       try {
-        const response = await api.post(
-          "/file/upload",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const response = await api.post("/file/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
         if (response.data) {
           setFileName("");
@@ -255,15 +243,11 @@ const StudentDashboard = () => {
       );
       formData.append("profilePicture", selectedFile);
       try {
-        const response = await api.post(
-          "/user/update",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const response = await api.post("/user/update", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
         if (response.status === 200 && response.data) {
           student.email = editProfileFormData.email;
@@ -301,214 +285,216 @@ const StudentDashboard = () => {
   } else {
     return (
       <>
-        <nav
-          className="navbar bg-dark border-bottom border-body rounded w-100"
-          data-bs-theme="dark"
-        >
-          <div className="d-flex justify-content-between">
-            <div className=" ms-3 me-3 d-flex gap-3 w-10 h-10 align-items-center">
-              <img
-                onClick={() => setImageModal(true)}
-                src={logoWithBG}
-                className="rounded-5 border border-3"
-                style={{ width: "40px", height: "40px" }}
-                alt="Profile Picture"
-              />
-              <span className="navbar-brand fs-3">
-                No Dues Management System
-              </span>
-            </div>
-          </div>
-          <div className="right-div d-flex gap-2 position-relative align-items-center">
-            <span
-              className="text-light fs-2 "
-              onClick={() => setUserprofileModal(true)}
-              style={{ cursor: "pointer" }}
-            >
-              {user.fullName ? user.fullName : "Name"}
-            </span>
-            <p className="line text-light fs-1">|</p>
-            <Link
-              to={"/"}
-              type="button"
-              className="btn btn-light text-decoration-none fs-6 me-sm-3 ms-sm-3"
-            >
-              LogOut
-            </Link>
-          </div>
-        </nav>
-
-        {/* Main Section */}
-        <div className="main-div d-flex flex-column flex-sm-row w-100 min-vh-100 gap-3 bg-light p-3">
-          {/* Sidebar */}
-          <div className="sidebar d-flex flex-column gap-3 pt-3 pb-3 bg-light w-25 rounded-2 shadow-sm">
-            <span>
-              <i className="fa-solid fa-user fa-lg"></i>
-              <b className="Stu-profile fs-4 ms-2">Student Profile</b>
-            </span>
-
-            <table className="table table-borderless">
-              <tbody>
-                <tr>
-                  <td>
-                    <strong>Name:</strong>
-                  </td>
-                  <td>{student.studentName}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Roll No:</strong>
-                  </td>
-                  <td>{student.enrollmentId}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Branch:</strong>
-                  </td>
-                  <td>{student.branch}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Semester:</strong>
-                  </td>
-                  <td>{student.semester}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Year:</strong>
-                  </td>
-                  <td>{student.year}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* No Dues Section */}
-          <div className="nodues-div w-75 h-auto p-4 bg-light rounded shadow-sm">
-            <div className="request-div d-flex justify-content-between align-items-center mb-4">
-              <h2 className="nodues-div-heading fs-3">
-                <i className="fa-solid fa-book me-2"></i> No Dues Status
-                Overview
-              </h2>
-              <button onClick={noDuesRequest} className="btn btn-primary">
-                No Dues Request
-              </button>
-            </div>
-            <table className="table table-hover">
-              <thead>
-                <tr>
-                  <th>Department</th>
-                  <th>Status</th>
-                  <th>Remarks</th>
-                </tr>
-              </thead>
-              <tbody>
-                {nodues.map((e, index) => (
-                  <tr className="table-primary" key={"nodues_101_" + index}>
-                    <td>{e.departmentName}</td>
-                    <td>
-                      {e.status === "PENDING" ? (
-                        <i className="fa-regular fa-hourglass-half fa-spin text-warning"></i>
-                      ) : e.status === "APPROVED" ? (
-                        <i className="fa-solid fa-check text-success"></i>
-                      ) : (
-                        <i className="fa-solid fa-xmark text-danger"></i>
-                      )}
-                    </td>
-                    <td>
-                      {e.status == "APPROVED"
-                        ? "Best Of Luck For Exam👍"
-                        : e.status == "REJECTED"
-                        ? "REJECTED"
-                        : e.remark}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-            {/* Upload Document */}
-            <div className="upload-document position-relative mt-5">
-              <h5>
-                <i className="fa-solid fa-file-upload me-2"></i> Upload Required
-                Document
-              </h5>
-
-              <div className="input-group my-3">
-                <label
-                  className="input-group-text"
-                  htmlFor="inputGroupSelect01"
-                >
-                  Select Department
-                </label>
-                <select
-                  className="form-select"
-                  id="inputGroupSelect01"
-                  value={selectedDepartment}
-                  onChange={(e) => setSelectedDepartment(e.target.value)}
-                >
-                  <option value="">Choose...</option>
-                  {authorities
-                    ? authorities
-                        .filter((auth) => auth.status)
-                        .map((auth) => (
-                          <option
-                            key={auth.designation}
-                            value={auth.designation}
-                          >
-                            {auth.designation}
-                          </option>
-                        ))
-                    : ""}
-                </select>
-              </div>
-
-              <div className="d-flex gap-lg-4 gap-sm-2 input-group mb-4">
-                <div className="d-flex">
-                  <label
-                    className="input-group-text"
-                    htmlFor="inputGroupSelect02"
-                  >
-                    Document Description
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="File Info"
-                    value={fileName}
-                    onChange={(e) => setFileName(e.target.value)}
-                  />
-                </div>
-
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  accept=".doc,.docx,.jpg,.jpeg,.png"
-                  required
-                  placeholder="Select a file .pdf,.doc,.docx,.jpg,.jpeg,.png"
-                  onChange={(e) => {
-                    setSelectedFile(e.target.files[0]);
-                  }}
+        <div className="container-fluid p-0">
+          {/* Navbar */}
+          <nav
+            className="navbar navbar-expand-lg bg-dark border-bottom border-body rounded w-100"
+            data-bs-theme="dark"
+          >
+            <div className="container-fluid d-flex justify-content-between align-items-center">
+              <div className="d-flex align-items-center gap-3">
+                <img
+                  onClick={() => setImageModal(true)}
+                  src={logoWithBG}
+                  className="rounded-circle border border-3"
+                  style={{ width: "40px", height: "40px", cursor: "pointer" }}
+                  alt="Profile"
                 />
-                <button
-                  className="btn btn-info"
-                  onClick={() => handleFileUploading()}
+                <span className="navbar-brand fs-4 text-light">
+                  No Dues Management System
+                </span>
+              </div>
+              <div className="d-flex flex-column flex-sm-row gap-2 align-items-center">
+                <span
+                  className="text-light fs-6"
+                  onClick={() => setUserprofileModal(true)}
+                  style={{ cursor: "pointer" }}
                 >
-                  Upload
+                  {user.fullName || "Name"}
+                </span>
+                <p className="text-light fs-4 d-none d-sm-block">|</p>
+                <Link to="/" className="btn btn-outline-light btn-sm">
+                  LogOut
+                </Link>
+              </div>
+            </div>
+          </nav>
+
+          {/* Main Section */}
+          <div className="row w-100 min-vh-100 gap-3 bg-light p-3 m-0">
+            {/* Sidebar */}
+            <div className="col-12 col-md-4 col-lg-3 mb-3 bg-light rounded-2 shadow-sm pt-3 pb-3">
+              <span>
+                <i className="fa-solid fa-user fa-lg"></i>
+                <b className="Stu-profile fs-4 ms-2">Student Profile</b>
+              </span>
+              <table className="table table-borderless mt-3">
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong>Name:</strong>
+                    </td>
+                    <td>{student.studentName}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Roll No:</strong>
+                    </td>
+                    <td>{student.enrollmentId}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Branch:</strong>
+                    </td>
+                    <td>{student.branch}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Semester:</strong>
+                    </td>
+                    <td>{student.semester}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Year:</strong>
+                    </td>
+                    <td>{student.year}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* No Dues Section */}
+            <div className="col-12 col-md-8 col-lg-9 bg-light rounded shadow-sm p-4">
+              {/* No Dues Overview */}
+              <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                <h2 className="fs-3">
+                  <i className="fa-solid fa-book me-2"></i> No Dues Status
+                  Overview
+                </h2>
+                <button
+                  onClick={noDuesRequest}
+                  className="btn btn-primary mt-2 mt-sm-0"
+                >
+                  No Dues Request
                 </button>
               </div>
-            </div>
 
-            {/* Download Certificate */}
-            <div className="download d-flex flex-column gap-3 mt-5">
-              <h6>
-                <i className="fa-solid fa-download me-2"></i> Download Final No
-                Dues Certificate
-              </h6>
-              <h6 className="text-success">
-                <i className="fa-solid fa-circle-check me-2"></i> All
-                departments cleared! Download available.
-              </h6>
-              <button className="btn btn-success">Download Certificate</button>
+              {/* Responsive Table */}
+              <div className="table-responsive">
+                <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Department</th>
+                      <th>Status</th>
+                      <th>Remarks</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {nodues.map((e, index) => (
+                      <tr className="table-primary" key={"nodues_101_" + index}>
+                        <td>{e.departmentName}</td>
+                        <td>
+                          {e.status === "PENDING" ? (
+                            <i className="fa-regular fa-hourglass-half fa-spin text-warning"></i>
+                          ) : e.status === "APPROVED" ? (
+                            <i className="fa-solid fa-check text-success"></i>
+                          ) : (
+                            <i className="fa-solid fa-xmark text-danger"></i>
+                          )}
+                        </td>
+                        <td>
+                          {e.status === "APPROVED"
+                            ? "Best Of Luck For Exam👍"
+                            : e.status === "REJECTED"
+                            ? "REJECTED"
+                            : e.remark}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Upload Document Section */}
+              <div className="upload-document position-relative mt-5">
+                <h5>
+                  <i className="fa-solid fa-file-upload me-2"></i> Upload
+                  Required Document
+                </h5>
+
+                <div className="input-group my-3">
+                  <label
+                    className="input-group-text"
+                    htmlFor="inputGroupSelect01"
+                  >
+                    Select Department
+                  </label>
+                  <select
+                    className="form-select"
+                    id="inputGroupSelect01"
+                    value={selectedDepartment}
+                    onChange={(e) => setSelectedDepartment(e.target.value)}
+                  >
+                    <option value="">Choose...</option>
+                    {authorities
+                      ?.filter((auth) => auth.status)
+                      .map((auth) => (
+                        <option key={auth.designation} value={auth.designation}>
+                          {auth.designation}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+
+                <div className="d-flex flex-column flex-lg-row gap-3 mb-4">
+                  <div className="flex-fill">
+                    <label className="form-label">Document Description</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="File Info"
+                      value={fileName}
+                      onChange={(e) => setFileName(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="flex-fill">
+                    <label className="form-label">Upload File</label>
+                    <input
+                      type="file"
+                      className="form-control"
+                      ref={fileInputRef}
+                      accept=".doc,.docx,.jpg,.jpeg,.png"
+                      onChange={(e) => setSelectedFile(e.target.files[0])}
+                    />
+                  </div>
+
+                  <div className="align-self-end">
+                    <button
+                      className="btn btn-info"
+                      onClick={handleFileUploading}
+                    >
+                      Upload
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Download Certificate Section */}
+              <div className="download d-flex flex-column gap-3 mt-5">
+                <h6>
+                  <i className="fa-solid fa-download me-2"></i> Download Final
+                  No Dues Certificate
+                </h6>
+                <h6 className="text-success">
+                  <i className="fa-solid fa-circle-check me-2"></i> All
+                  departments cleared! Download available.
+                </h6>
+                <button className="btn btn-success">
+                  Download Certificate
+                </button>
+              </div>
             </div>
           </div>
         </div>
