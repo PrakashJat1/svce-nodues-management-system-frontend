@@ -369,17 +369,16 @@ const StudentDashboard = () => {
             {/* No Dues Section */}
             <div className="col-12 col-md-8 col-lg-9 bg-light rounded shadow-sm p-4">
               {/* No Dues Overview */}
-              <div className="row mb-4 align-items-center">
-                <div className="col-12 col-sm-8">
-                  <h2 className="fs-3 mb-0">
-                    <i className="fa-solid fa-book"></i> No Dues Status
-                  </h2>
-                </div>
-                <div className="col-12 col-sm-4 text-sm-end mt-2 mt-sm-0">
-                  <button onClick={noDuesRequest} className="btn btn-primary">
-                    No Dues Request
-                  </button>
-                </div>
+              <div className="d-flex flex-wrap justify-content-between align-items-center mb-4">
+                <h2 className="fs-3 mb-0 me-1">
+                  <i className="fa-solid fa-book"></i> No Dues Status
+                </h2>
+                <button
+                  onClick={noDuesRequest}
+                  className="btn btn-primary mt-2 mt-sm-0"
+                >
+                  No Dues Request
+                </button>
               </div>
 
               {/* Responsive Table */}
