@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Modal, Form, Button } from "react-bootstrap";
 import api from "../api/axios";
 import logoWithBG from "../assets/NDMSlogoWithBG.png";
+import Loader from "../components/Loader";
 
 const StudentDashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -281,7 +282,7 @@ const StudentDashboard = () => {
   }, [user, verifyUserModal]);
 
   if (loading) {
-    return <h1>loading.....</h1>;
+    return <Loader/>
   } else {
     return (
       <>
