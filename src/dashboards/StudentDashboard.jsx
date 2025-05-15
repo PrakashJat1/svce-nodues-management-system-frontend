@@ -282,7 +282,7 @@ const StudentDashboard = () => {
   }, [user, verifyUserModal]);
 
   if (loading) {
-    return <Loader/>
+    return <Loader />;
   } else {
     return (
       <>
@@ -319,7 +319,7 @@ const StudentDashboard = () => {
                   </span>
                   <span className="text-light">|</span>
                   <Link to="/" className="btn btn-outline-light btn-sm">
-                   🚪 LogOut
+                    🚪 LogOut
                   </Link>
                   <a
                     href="https://vivekanandgroup.com/"
@@ -327,7 +327,7 @@ const StudentDashboard = () => {
                     rel="noopener noreferrer"
                     className=" text-decoration-none text-light"
                   >
-                   🌐 Official Web
+                    🌐 Official Web
                   </a>
                 </div>
 
@@ -366,7 +366,7 @@ const StudentDashboard = () => {
                         rel="noopener noreferrer"
                         className="dropdown-item text-decoration-none"
                       >
-                       🌐 Official Web
+                        🌐 Official Web
                       </a>
                     </li>
                   </ul>
@@ -375,180 +375,188 @@ const StudentDashboard = () => {
             </div>
           </nav>
 
-          {/* Main Section */}
-          <div className="row w-100 min-vh-100 gap-3 bg-light p-3 m-0">
-            {/* Sidebar */}
-            <div className="col-12 col-md-4 col-lg-3 mb-3 bg-light rounded-2 shadow-sm pt-3 pb-3">
-              <span>
-                <i className="fa-solid fa-user fa-lg"></i>
-                <b className="Stu-profile fs-4 ms-2">Student Profile</b>
-              </span>
-              <table className="table table-borderless mt-3">
-                <tbody>
-                  <tr>
-                    <td>
-                      <strong>Name:</strong>
-                    </td>
-                    <td>{student.studentName}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Roll No:</strong>
-                    </td>
-                    <td>{student.enrollmentId}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Branch:</strong>
-                    </td>
-                    <td>{student.branch}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Semester:</strong>
-                    </td>
-                    <td>{student.semester}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Year:</strong>
-                    </td>
-                    <td>{student.year}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            {/* No Dues Section */}
-            <div className="col-12 col-md-8 col-lg-9 bg-light rounded shadow-sm p-4">
-              {/* No Dues Overview */}
-              <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-                <h2 className="fs-3 mb-0 me-3">
-                  <i className="fa-solid fa-book"></i> No Dues Status
-                </h2>
-                <button
-                  onClick={() => noDuesRequest()}
-                  className="btn btn-primary mt-2 mt-sm-0"
-                  disabled={nodues.length > 0}
-                >
-                  {nodues.length > 0 ? "Request Sent" : "No Dues Request"}
-                </button>
-              </div>
-
-              {/* Responsive Table */}
-              <div className="table-responsive">
-                <table className="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Department</th>
-                      <th>Status</th>
-                      <th>Remarks</th>
-                    </tr>
-                  </thead>
+          {/* Main section */}
+          <div className="container-fluid py-4 min-vh-100">
+            <div className="row gx-4 gy-3">
+              {/* Sidebar */}
+              <div className="col-12 col-md-4 col-lg-3 bg-light rounded-2 shadow-sm pt-3 pb-3">
+                <span>
+                  <i className="fa-solid fa-user fa-lg"></i>
+                  <b className="Stu-profile fs-4 ms-2">Student Profile</b>
+                </span>
+                <table className="table table-borderless mt-3">
                   <tbody>
-                    {nodues.map((e, index) => (
-                      <tr className="table-primary" key={"nodues_101_" + index}>
-                        <td>{e.departmentName}</td>
-                        <td>
-                          {e.status === "PENDING" ? (
-                            <i className="fa-regular fa-hourglass-half fa-spin text-warning"></i>
-                          ) : e.status === "APPROVED" ? (
-                            <i className="fa-solid fa-check text-success"></i>
-                          ) : (
-                            <i className="fa-solid fa-xmark text-danger"></i>
-                          )}
-                        </td>
-                        <td>
-                          {e.status === "APPROVED"
-                            ? "Best Of Luck For Exam👍"
-                            : e.status === "REJECTED"
-                            ? "REJECTED"
-                            : e.remark}
-                        </td>
-                      </tr>
-                    ))}
+                    <tr>
+                      <td>
+                        <strong>Name:</strong>
+                      </td>
+                      <td>{student.studentName}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Roll No:</strong>
+                      </td>
+                      <td>{student.enrollmentId}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Branch:</strong>
+                      </td>
+                      <td>{student.branch}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Semester:</strong>
+                      </td>
+                      <td>{student.semester}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Year:</strong>
+                      </td>
+                      <td>{student.year}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
 
-              {/* Upload Document Section */}
-              <div className="upload-document position-relative mt-5">
-                <h5>
-                  <i className="fa-solid fa-file-upload me-2"></i> Upload
-                  Required Document
-                </h5>
+              {/* Main Content */}
+              <div className="col-12 col-md-8 col-lg-9 bg-light rounded shadow-sm p-4">
+                {/* No Dues Overview */}
+                <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                  <h2 className="fs-3 mb-0 me-3">
+                    <i className="fa-solid fa-book"></i> No Dues Status
+                  </h2>
+                  <button
+                    onClick={() => noDuesRequest()}
+                    className="btn btn-primary mt-2 mt-sm-0"
+                    disabled={nodues.length > 0}
+                  >
+                    {nodues.length > 0 ? "Request Sent" : "No Dues Request"}
+                  </button>
+                </div>
 
-                <div className="input-group my-3">
-                  <label
-                    className="input-group-text"
-                    htmlFor="inputGroupSelect01"
-                  >
-                    Select Department
-                  </label>
-                  <select
-                    className="form-select"
-                    id="inputGroupSelect01"
-                    value={selectedDepartment}
-                    onChange={(e) => setSelectedDepartment(e.target.value)}
-                  >
-                    <option value="">Choose...</option>
-                    {authorities
-                      ?.filter((auth) => auth.status)
-                      .map((auth) => (
-                        <option key={auth.designation} value={auth.designation}>
-                          {auth.designation}
-                        </option>
+                {/* Responsive Table */}
+                <div className="table-responsive">
+                  <table className="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Department</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {nodues.map((e, index) => (
+                        <tr
+                          className="table-primary"
+                          key={"nodues_101_" + index}
+                        >
+                          <td>{e.departmentName}</td>
+                          <td>
+                            {e.status === "PENDING" ? (
+                              <i className="fa-regular fa-hourglass-half fa-spin text-warning"></i>
+                            ) : e.status === "APPROVED" ? (
+                              <i className="fa-solid fa-check text-success"></i>
+                            ) : (
+                              <i className="fa-solid fa-xmark text-danger"></i>
+                            )}
+                          </td>
+                          <td>
+                            {e.status === "APPROVED"
+                              ? "Best Of Luck For Exam👍"
+                              : e.status === "REJECTED"
+                              ? "REJECTED"
+                              : e.remark}
+                          </td>
+                        </tr>
                       ))}
-                  </select>
+                    </tbody>
+                  </table>
                 </div>
 
-                <div className="d-flex flex-column flex-lg-row gap-3 mb-4">
-                  <div className="flex-fill">
-                    <label className="form-label">Document Description</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="File Info"
-                      value={fileName}
-                      onChange={(e) => setFileName(e.target.value)}
-                    />
-                  </div>
+                {/* Upload Document Section */}
+                <div className="upload-document position-relative mt-5">
+                  <h5>
+                    <i className="fa-solid fa-file-upload me-2"></i> Upload
+                    Required Document
+                  </h5>
 
-                  <div className="flex-fill">
-                    <label className="form-label">Upload File</label>
-                    <input
-                      type="file"
-                      className="form-control"
-                      ref={fileInputRef}
-                      accept=".doc,.docx,.jpg,.jpeg,.png"
-                      onChange={(e) => setSelectedFile(e.target.files[0])}
-                    />
-                  </div>
-
-                  <div className="align-self-end">
-                    <button
-                      className="btn btn-info"
-                      onClick={handleFileUploading}
+                  <div className="input-group my-3">
+                    <label
+                      className="input-group-text"
+                      htmlFor="inputGroupSelect01"
                     >
-                      Upload
-                    </button>
+                      Select Department
+                    </label>
+                    <select
+                      className="form-select"
+                      id="inputGroupSelect01"
+                      value={selectedDepartment}
+                      onChange={(e) => setSelectedDepartment(e.target.value)}
+                    >
+                      <option value="">Choose...</option>
+                      {authorities
+                        ?.filter((auth) => auth.status)
+                        .map((auth) => (
+                          <option
+                            key={auth.designation}
+                            value={auth.designation}
+                          >
+                            {auth.designation}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+
+                  <div className="d-flex flex-column flex-lg-row gap-3 mb-4">
+                    <div className="flex-fill">
+                      <label className="form-label">Document Description</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="File Info"
+                        value={fileName}
+                        onChange={(e) => setFileName(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="flex-fill">
+                      <label className="form-label">Upload File</label>
+                      <input
+                        type="file"
+                        className="form-control"
+                        ref={fileInputRef}
+                        accept=".doc,.docx,.jpg,.jpeg,.png"
+                        onChange={(e) => setSelectedFile(e.target.files[0])}
+                      />
+                    </div>
+
+                    <div className="align-self-end">
+                      <button
+                        className="btn btn-info"
+                        onClick={handleFileUploading}
+                      >
+                        Upload
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Download Certificate Section */}
-              <div className="download d-flex flex-column gap-3 mt-5">
-                <h6>
-                  <i className="fa-solid fa-download me-2"></i> Download Final
-                  No Dues Certificate
-                </h6>
-                <h6 className="text-success">
-                  <i className="fa-solid fa-circle-check me-2"></i> All
-                  departments cleared! Download available.
-                </h6>
-                <button className="btn btn-success">
-                  Download Certificate
-                </button>
+                {/* Download Certificate Section */}
+                <div className="download d-flex flex-column gap-3 mt-5">
+                  <h6>
+                    <i className="fa-solid fa-download me-2"></i> Download Final
+                    No Dues Certificate
+                  </h6>
+                  <h6 className="text-success">
+                    <i className="fa-solid fa-circle-check me-2"></i> All
+                    departments cleared! Download available.
+                  </h6>
+                  <button className="btn btn-success">
+                    Download Certificate
+                  </button>
+                </div>
               </div>
             </div>
           </div>
