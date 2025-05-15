@@ -16,6 +16,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import api from "../api/axios";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // 🔥 Enables dropdown, modal, collapse, etc.
+import Loader from "../components/Loader";
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
