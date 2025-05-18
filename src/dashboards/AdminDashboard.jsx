@@ -1113,7 +1113,7 @@ const AdminDashboard = () => {
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Profile Picture</Form.Label>
-                <Form.Controls
+                <Form.Control
                   required
                   type="file"
                   placeholder="dfwfqwfwef"
