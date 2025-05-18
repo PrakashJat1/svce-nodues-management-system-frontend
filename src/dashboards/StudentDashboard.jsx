@@ -197,6 +197,7 @@ const StudentDashboard = () => {
         setVerifyUserModal(false);
         setEditProfileModal(true);
         setEditProfileFormData({password:verifyPassword});
+        setVerifyPassword("");
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -230,6 +231,8 @@ const StudentDashboard = () => {
         return;
       }
       setEditProfileModal(false);
+
+      console.log("Password for updation = "+editProfileFormData.password);
 
       const formData = new FormData();
       formData.append("email", student.email); //user email whose data to be updated
@@ -632,7 +635,6 @@ const StudentDashboard = () => {
           show={verifyUserModal}
           onHide={() => {
             setVerifyUserModal(false);
-            setVerifyPassword("");
           }}
         >
           <Modal.Header>
@@ -658,7 +660,6 @@ const StudentDashboard = () => {
             <Button
               variant="secondary"
               onClick={() => {
-                setVerifyPassword("");
                 setVerifyUserModal(false);
                 setUserprofileModal(true);
               }}
