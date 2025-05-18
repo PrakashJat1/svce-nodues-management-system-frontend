@@ -42,8 +42,6 @@ const AuthorityDasboard = () => {
       getAllNoDuesStatus(fetchedAuthority);
       countAllDocumentedStudentByAuthority(fetchedAuthority);
 
-      console.log(fetchedAuthority);
-
       setLoading(false);
     };
 
@@ -58,7 +56,6 @@ const AuthorityDasboard = () => {
       if (response.data != null) {
         toast.success("Successfully updated");
         setUser(response.data);
-        console.log(response.data);
         return response.data;
       } else {
         toast.error("Authority is not fetched from db");
@@ -114,7 +111,6 @@ const AuthorityDasboard = () => {
 
       if (response.data > 0) {
         setAllDocumentedStudents(response.data);
-        console.log(response.data);
       } else {
         setAllDocumentedStudents(0);
       }
@@ -188,7 +184,6 @@ const AuthorityDasboard = () => {
       toast.info("Please enter Password");
       return;
     }
-    console.log(authority.email + " " + verifyPassword);
 
     try {
       const response = await api.get(
@@ -198,7 +193,6 @@ const AuthorityDasboard = () => {
       if (response.data) {
         setVerifyUserModal(false);
         setEditProfileModal(true);
-        console.log(authority);
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -244,16 +238,6 @@ const AuthorityDasboard = () => {
         return;
       }
       setEditProfileModal(false);
-
-      console.log(
-        editProfileFormData.fullName +
-          " : " +
-          editProfileFormData.email +
-          " : " +
-          editProfileFormData.password +
-          " : " +
-          editProfileFormData.phoneNo
-      );
 
       const formData = new FormData();
       formData.append("email", user.email); //user email whose data to be updated

@@ -43,7 +43,7 @@ const Login = () => {
       
       console.log(response.data);
       if (response.data == "") {
-        toast.error("Please register first");
+        toast.error("Invalid Email or Password");
         return;
       } else if (response.status === 200) {
         const role = response.data;

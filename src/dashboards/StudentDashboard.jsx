@@ -96,7 +96,6 @@ const StudentDashboard = () => {
     if (student) {
       let response = await api.get(`/noduesstatus/request/${student.id}`);
 
-      console.log(response.data);
       if (!response.data) {
         toast.error("Request is already sent");
       } else {
@@ -112,7 +111,6 @@ const StudentDashboard = () => {
       const response = await api.get("/authority/getAll");
       if (response) {
         setAuthorities(response.data);
-        // console.log(response.data);
       }
     } catch (error) {
       toast.error("Error while fetching authorities");
@@ -199,7 +197,6 @@ const StudentDashboard = () => {
       if (response.status === 200 && response.data) {
         setVerifyUserModal(false);
         setEditProfileModal(true);
-        console.log(student);
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");

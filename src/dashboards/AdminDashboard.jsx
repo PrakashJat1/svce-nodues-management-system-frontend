@@ -166,7 +166,6 @@ const AdminDashboard = () => {
 
       if (response.data != null) {
         toast.success("Successfully updated");
-        console.log(response.data);
         setAdmin(response.data);
         return response.data;
       } else {
@@ -198,7 +197,6 @@ const AdminDashboard = () => {
       const response = await api.get("/noduesstatus/getAll");
       if (response) {
         setNoduesstatus(response.data);
-        // console.log(response.data);
       }
     } catch (error) {
       toast.error("Error while fetching NoDuesStatus");
@@ -213,7 +211,6 @@ const AdminDashboard = () => {
       if (response) {
         setAuthorities(response.data);
         setTotalAuthorities(response.data.length);
-        // console.log(response.data);
       }
     } catch (error) {
       toast.error("Error while fetching authorities");
@@ -257,7 +254,6 @@ const AdminDashboard = () => {
 
   const toggleAuthorityStatus = async (email) => {
     try {
-      console.log(email);
       const responseFromAuthority = await api.post(
         `/authority/toggleAuthorityStatus/${email}`
       );
@@ -322,7 +318,6 @@ const AdminDashboard = () => {
     const selectedEnrollmentIds = [];
     selectedRows.forEach((row) => selectedEnrollmentIds.push(row.EnrollmentId));
 
-    console.log(selectedEnrollmentIds);
     try {
       const response = await api.put(
         "/students/activateAllStudents",
@@ -508,8 +503,6 @@ const AdminDashboard = () => {
       toast.info("Please enter Password");
       return;
     }
-
-    console.log(admin.email);
 
     try {
       const response = await api.get(
