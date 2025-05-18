@@ -236,7 +236,7 @@ const StudentDashboard = () => {
       }
       setEditProfileModal(false);
 
-      console.log(`Password for updation = ${editProfileFormData.password}`);
+      console.log("Edit Profile Form Data:", editProfileFormData);
 
       const formData = new FormData();
       formData.append("email", student.email); //user email whose data to be updated
