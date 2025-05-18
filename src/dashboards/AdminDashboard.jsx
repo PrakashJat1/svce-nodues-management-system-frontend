@@ -496,7 +496,6 @@ const AdminDashboard = () => {
 
   //check valid user for profile updation
   const isValidUser = async () => {
-    setVerifyPassord("");
 
     if (verifyPassword.trim().length == 0) {
       toast.info("Please enter Password");
@@ -512,6 +511,7 @@ const AdminDashboard = () => {
         setVerifyUserModal(false);
         setEditProfileModal(true);
         setEditProfileFormData({password:verifyPassword});
+        setVerifyPassord("");
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -572,7 +572,6 @@ const AdminDashboard = () => {
               admin.email = user.email;
               admin.password = user.password;
               setAdmin(admin);
-              // localStorage.setItem("admin", admin);
             });
 
           setSelectedFile(null);

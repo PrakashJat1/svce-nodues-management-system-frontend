@@ -182,7 +182,6 @@ const StudentDashboard = () => {
 
   //check valid user for profile updation
   const isValidUser = async () => {
-    setVerifyPassword("");
 
     if (verifyPassword.trim().length == 0) {
       toast.info("Please enter Password");
@@ -198,6 +197,7 @@ const StudentDashboard = () => {
         setVerifyUserModal(false);
         setEditProfileModal(true);
         setEditProfileFormData({password:verifyPassword});
+        setVerifyPassword("");
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -686,7 +686,7 @@ const StudentDashboard = () => {
                   required
                   type="text"
                   value={
-                    editProfileFormData.fullName.trim() == ""
+                    editProfileFormData.fullName == ""
                       ? user.fullName
                       : editProfileFormData.fullName
                   }
@@ -705,7 +705,7 @@ const StudentDashboard = () => {
                   type="email"
                   placeholder="Enter email"
                   value={
-                    editProfileFormData.email.trim() == ""
+                    editProfileFormData.email == ""
                       ? student.email
                       : editProfileFormData.email
                   }
