@@ -201,6 +201,8 @@ const StudentDashboard = () => {
         }));
 
         toast.success("Verified");
+        console.log("verified passowrd "+verifyPassword);
+        console.log("edit profile passowrd "+editProfileFormData.password);
       } else {
         toast.warn("Incorrect password");
       }
@@ -234,7 +236,7 @@ const StudentDashboard = () => {
       }
       setEditProfileModal(false);
 
-      console.log("Password for updation = " + editProfileFormData.password);
+      console.log(`Password for updation = ${editProfileFormData.password}`);
 
       const formData = new FormData();
       formData.append("email", student.email); //user email whose data to be updated
