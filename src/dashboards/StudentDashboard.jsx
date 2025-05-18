@@ -201,8 +201,8 @@ const StudentDashboard = () => {
         }));
 
         toast.success("Verified");
-        console.log("verified passowrd "+verifyPassword);
-        console.log("edit profile passowrd "+editProfileFormData.password);
+        console.log("verified passowrd " + verifyPassword);
+        console.log("edit profile passowrd " + editProfileFormData.password);
       } else {
         toast.warn("Incorrect password");
       }
@@ -276,11 +276,12 @@ const StudentDashboard = () => {
   //set default values in updated form feilds
   useEffect(() => {
     if (student) {
-      setEditProfileFormData({
+      setEditProfileFormData((prevData) => ({
+        ...prevData,
         fullName: user.fullName || "",
         email: user.email || "",
         phoneNo: user.phoneNo || "",
-      });
+      }));
     }
   }, [user, verifyUserModal]);
 
