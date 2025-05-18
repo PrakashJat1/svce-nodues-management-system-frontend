@@ -153,7 +153,6 @@ const AdminDashboard = () => {
       setEditProfileFormData({
         fullName: admin.fullName || "",
         email: admin.email || "",
-        password: admin.password || "",
         phoneNo: admin.phoneNo || "",
       });
     }
@@ -512,6 +511,7 @@ const AdminDashboard = () => {
       if (response.status === 200 && response.data) {
         setVerifyUserModal(false);
         setEditProfileModal(true);
+        setEditProfileFormData({password:verifyPassword});
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -524,6 +524,8 @@ const AdminDashboard = () => {
 
   //profile update handling
   const updateUserData = async () => {
+
+    setVerifyPassord("");
     //profile picture handling
     if (selectedFile == null) {
       toast.warning("Please select the file");
@@ -1097,7 +1099,7 @@ const AdminDashboard = () => {
                   placeholder="**********"
                   value={
                     editProfileFormData.password.trim() == ""
-                      ? admin.password
+                      ? verifyPassword
                       : editProfileFormData.password
                   }
                   onChange={(e) =>

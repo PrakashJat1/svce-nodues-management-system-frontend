@@ -178,7 +178,6 @@ const AuthorityDasboard = () => {
 
   //check valid user for profile updation
   const isValidUser = async () => {
-    setVerifyPassword("");
 
     if (verifyPassword.trim().length == 0) {
       toast.info("Please enter Password");
@@ -193,6 +192,7 @@ const AuthorityDasboard = () => {
       if (response.data) {
         setVerifyUserModal(false);
         setEditProfileModal(true);
+        setEditProfileFormData({password:verifyPassword});
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -209,7 +209,6 @@ const AuthorityDasboard = () => {
       setEditProfileFormData({
         fullName: user.fullNaame || "",
         email: user.email || "",
-        password: user.password || "",
         phoneNo: user.phoneNo || "",
       });
     }
@@ -217,6 +216,8 @@ const AuthorityDasboard = () => {
 
   //profile update handling
   const updateUserData = async () => {
+
+    setVerifyPassword("");
     //profile picture handling
     if (selectedFile == null) {
       toast.warning("Please select the file");
@@ -549,7 +550,7 @@ const AuthorityDasboard = () => {
                   type="text"
                   value={
                     editProfileFormData.fullName == ""
-                      ? authority.fullName
+                      ? user.fullName
                       : editProfileFormData.fullName
                   }
                   onChange={(e) =>
@@ -588,7 +589,7 @@ const AuthorityDasboard = () => {
                   placeholder="Password@123"
                   value={
                     editProfileFormData.password == ""
-                      ? user.password
+                      ? verifyPassword
                       : editProfileFormData.password
                   }
                   onChange={(e) =>

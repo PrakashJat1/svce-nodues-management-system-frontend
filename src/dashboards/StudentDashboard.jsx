@@ -197,6 +197,7 @@ const StudentDashboard = () => {
       if (response.status === 200 && response.data) {
         setVerifyUserModal(false);
         setEditProfileModal(true);
+        setEditProfileFormData({password:verifyPassword});
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -272,7 +273,6 @@ const StudentDashboard = () => {
       setEditProfileFormData({
         fullName: user.fullName || "",
         email: user.email || "",
-        password: user.password || "",
         phoneNo: user.phoneNo || "",
       });
     }
