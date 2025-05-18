@@ -193,7 +193,6 @@ const AuthorityDasboard = () => {
         setVerifyUserModal(false);
         setEditProfileModal(true);
         setEditProfileFormData({password:verifyPassword});
-        setVerifyPassword("");
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");

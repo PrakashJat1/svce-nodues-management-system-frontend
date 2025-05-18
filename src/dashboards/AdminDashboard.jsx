@@ -511,7 +511,6 @@ const AdminDashboard = () => {
         setVerifyUserModal(false);
         setEditProfileModal(true);
         setEditProfileFormData({password:verifyPassword});
-        setVerifyPassord("");
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");

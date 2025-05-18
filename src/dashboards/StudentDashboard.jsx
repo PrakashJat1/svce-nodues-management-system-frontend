@@ -197,7 +197,6 @@ const StudentDashboard = () => {
         setVerifyUserModal(false);
         setEditProfileModal(true);
         setEditProfileFormData({password:verifyPassword});
-        setVerifyPassword("");
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -725,7 +724,7 @@ const StudentDashboard = () => {
                   placeholder="**********"
                   value={
                     editProfileFormData.password == ""
-                      ? student.password
+                      ?  verifyPassword
                       : editProfileFormData.password
                   }
                   onChange={(e) =>
