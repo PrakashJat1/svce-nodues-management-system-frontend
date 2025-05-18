@@ -192,7 +192,10 @@ const AuthorityDasboard = () => {
       if (response.data) {
         setVerifyUserModal(false);
         setEditProfileModal(true);
-        setEditProfileFormData({password:verifyPassword});
+        setEditProfileFormData((prevData) => ({
+          ...prevData,
+          password: verifyPassword,
+        }));
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -206,11 +209,12 @@ const AuthorityDasboard = () => {
   //set default values in updated form feilds
   useEffect(() => {
     if (authority) {
-      setEditProfileFormData({
-        fullName: user.fullNaame || "",
+     setEditProfileFormData((prevData) => ({
+        ...prevData,
+        fullName: user.fullName || "",
         email: user.email || "",
         phoneNo: user.phoneNo || "",
-      });
+      }));
     }
   }, [user, verifyUserModal]);
 
@@ -496,7 +500,6 @@ const AuthorityDasboard = () => {
           show={verifyUserModal}
           onHide={() => {
             setVerifyUserModal(false);
-            setVerifyPassword("");
           }}
         >
           <Modal.Header>
@@ -522,7 +525,6 @@ const AuthorityDasboard = () => {
             <Button
               variant="secondary"
               onClick={() => {
-                setVerifyPassword("");
                 setVerifyUserModal(false);
                 setUserprofileModal(true);
               }}

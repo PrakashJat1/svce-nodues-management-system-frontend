@@ -201,8 +201,6 @@ const StudentDashboard = () => {
         }));
 
         toast.success("Verified");
-        console.log("verified passowrd " + verifyPassword);
-        console.log("edit profile passowrd " + editProfileFormData.password);
       } else {
         toast.warn("Incorrect password");
       }
@@ -214,6 +212,8 @@ const StudentDashboard = () => {
 
   //profile update handling
   const updateUserData = async () => {
+
+    setVerifyPassword("");
     //profile picture handling
     if (selectedFile == null) {
       toast.warning("Please select the file");
@@ -235,8 +235,6 @@ const StudentDashboard = () => {
         return;
       }
       setEditProfileModal(false);
-
-      console.log("Edit Profile Form Data:", editProfileFormData);
 
       const formData = new FormData();
       formData.append("email", student.email); //user email whose data to be updated

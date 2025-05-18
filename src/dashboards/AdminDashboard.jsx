@@ -150,11 +150,12 @@ const AdminDashboard = () => {
   //set default values in updated form feilds
   useEffect(() => {
     if (admin) {
-      setEditProfileFormData({
+      setEditProfileFormData((prevData) => ({
+        ...prevData,
         fullName: admin.fullName || "",
         email: admin.email || "",
         phoneNo: admin.phoneNo || "",
-      });
+      }));
     }
   }, [admin, verifyUserModal]);
 
@@ -510,7 +511,10 @@ const AdminDashboard = () => {
       if (response.status === 200 && response.data) {
         setVerifyUserModal(false);
         setEditProfileModal(true);
-        setEditProfileFormData({password:verifyPassword});
+       setEditProfileFormData((prevData) => ({
+          ...prevData,
+          password: verifyPassword,
+        }));
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -1030,7 +1034,6 @@ const AdminDashboard = () => {
             <Button
               variant="secondary"
               onClick={() => {
-                setVerifyPassord("");
                 setVerifyUserModal(false);
                 setUserprofileModal(true);
               }}
