@@ -50,7 +50,7 @@ const AdminDashboard = () => {
     fullName: "",
     email: "",
     password: "",
-    phone_no: "",
+    phoneNo: "",
   });
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -1134,7 +1134,7 @@ const AdminDashboard = () => {
                   onChange={(e) =>
                     setEditProfileFormData({
                       ...editProfileFormData,
-                      phone_no: e.target.value,
+                      phoneNo: e.target.value,
                     })
                   }
                 />
