@@ -182,7 +182,6 @@ const StudentDashboard = () => {
 
   //check valid user for profile updation
   const isValidUser = async () => {
-
     if (verifyPassword.trim().length == 0) {
       toast.info("Please enter Password");
       return;
@@ -196,8 +195,11 @@ const StudentDashboard = () => {
       if (response.status === 200 && response.data) {
         setVerifyUserModal(false);
         setEditProfileModal(true);
-        setEditProfileFormData({password:verifyPassword});
-        setVerifyPassword("");
+        setEditProfileFormData((prevData) => ({
+          ...prevData,
+          password: verifyPassword,
+        }));
+
         toast.success("Verified");
       } else {
         toast.warn("Incorrect password");
@@ -232,7 +234,7 @@ const StudentDashboard = () => {
       }
       setEditProfileModal(false);
 
-      console.log("Password for updation = "+editProfileFormData.password);
+      console.log("Password for updation = " + editProfileFormData.password);
 
       const formData = new FormData();
       formData.append("email", student.email); //user email whose data to be updated
@@ -725,7 +727,7 @@ const StudentDashboard = () => {
                   placeholder="**********"
                   value={
                     editProfileFormData.password == ""
-                      ?  verifyPassword
+                      ? verifyPassword
                       : editProfileFormData.password
                   }
                   onChange={(e) =>
