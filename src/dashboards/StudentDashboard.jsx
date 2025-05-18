@@ -724,7 +724,7 @@ const StudentDashboard = () => {
                   type="text"
                   placeholder="**********"
                   value={
-                    editProfileFormData.password.trim() == ""
+                    editProfileFormData.password == ""
                       ? student.password
                       : editProfileFormData.password
                   }

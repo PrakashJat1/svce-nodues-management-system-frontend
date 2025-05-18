@@ -1098,7 +1098,7 @@ const AdminDashboard = () => {
                   type="text"
                   placeholder="**********"
                   value={
-                    editProfileFormData.password.trim() == ""
+                    editProfileFormData.password == ""
                       ? verifyPassword
                       : editProfileFormData.password
                   }
