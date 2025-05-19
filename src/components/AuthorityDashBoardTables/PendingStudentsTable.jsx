@@ -131,7 +131,7 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
       const response = await api.post(
         `/noduesstatus/updateAllNoDuesStatus/${
           authority.id
-        }/${"APPROVED"}/${""}`,
+        }/${"APPROVED"}/${encodeURIComponent("Best of Luck For Exam👍")}`,
         selectedStudentIds
       );
       if (response.data) {
