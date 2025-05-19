@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 
 // ag grid
 
@@ -8,14 +8,13 @@ import { AgGridReact } from "@ag-grid-community/react";
 import "@ag-grid-community/styles/ag-grid.css";
 import "@ag-grid-community/styles/ag-theme-alpine.css";
 import api from "../../api/axios";
-import RejectStudentNoDuesModal from "../Modals/RejectStudentNoDuesModal";
 
 const PendingStudentsTable = ({ authorityFromParent }) => {
   const [authority, setAuthority] = useState(authorityFromParent);
   const [allPendingStudents, setAllPendingStudents] = useState([]);
   const [pendingStudentsTable, setPendingStudentsTable] = useState([]);
   const [gridApi, setGridApi] = useState(null);
-  const [rejectAllStudentModal,setRejectAllStudentModal] = useState(false);
+  const [rejectAllStudentModal, setRejectAllStudentModal] = useState(false);
 
   useEffect(() => {
     if (authorityFromParent) {
@@ -76,7 +75,6 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
     },
   ]);
 
- 
   const pendingStudentsMethod = async (authority) => {
     try {
       const response = await api.get(
@@ -84,7 +82,7 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
       );
 
       if (response.status === 200 && response.data) {
-        toast.success(response.data.length+" Pending Requests Fetched");
+        toast.success(response.data.length + " Pending Requests Fetched");
 
         setAllPendingStudents(response.data);
 
@@ -129,9 +127,7 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
 
     try {
       const response = await api.post(
-        `/noduesstatus/updateAllNoDuesStatus/${
-          authority.id
-        }/${"APPROVED"}`,
+        `/noduesstatus/updateAllNoDuesStatus/${authority.id}/${"APPROVED"}`,
         selectedStudentIds
       );
       if (response.data) {
@@ -176,9 +172,7 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
 
     try {
       const response = await api.post(
-        `/noduesstatus/updateAllNoDuesStatus/${
-          authority.id
-        }/${"REJECTED"}`,
+        `/noduesstatus/updateAllNoDuesStatus/${authority.id}/${"REJECTED"}`,
         selectedStudentIds
       );
       if (response.status === 200 && response.data) {
@@ -199,8 +193,6 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
       console.log("error while update nodues status", error);
     }
   };
-
-
 
   return (
     <>
@@ -250,9 +242,33 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
         />
       </div>
 
-      {
-        rejectAllStudentModal && <RejectStudentNoDuesModal rejectAll = {()=>rejectAll(authority)}/>
-      }
+      {/* Reject All Students Modal*/}
+      <Modal
+        centered
+        show={rejectAllStudentModal}
+        onHide={() => setRejectAllStudentModal(false)}
+      >
+        <div className="d-flex flex-column justify-content-center align-content-center m-5">
+          <h3>Confirm Deletion🥲</h3>
+          <p>
+            Are you sure you want to Reject No Dues of All Selected Students ?
+          </p>
+          <div className="d-flex gap-4">
+            <Button
+              variant="danger"
+              onClick={() => {
+                rejectAll();
+                setRejectAllStudentModal(false);
+              }}
+            >
+              Yes
+            </Button>
+            <Button onClick={() => setRejectAllStudentModal(false)}>
+              Cancel
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

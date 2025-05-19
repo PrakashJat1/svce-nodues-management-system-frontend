@@ -8,6 +8,7 @@ import { AgGridReact } from "@ag-grid-community/react";
 import "@ag-grid-community/styles/ag-grid.css";
 import "@ag-grid-community/styles/ag-theme-alpine.css";
 import api from "../../api/axios";
+import { Modal } from "react-bootstrap";
 
 const ApprovedStudentsTable = ({authorityFromParent }) => {
 
@@ -15,6 +16,7 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
   const [allApprovedStudents, setAllApprovedStudents] = useState([]);
   const [approvedStudentsTable, setApprovedStudentsTable] = useState([]);
   const [gridApi, setGridApi] = useState(null);
+  const [rejectAllStudentModal,setRejectAllStudentModal] = useState(false);
 
   useEffect(() => {
     if (authorityFromParent) {
@@ -164,7 +166,7 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
           <div className="d-flex me-lg-3  gap-3">
             <button
               className="btn btn-danger me-lg-5 me-sm-0"
-              onClick={() => rejectAll(authority)}
+              onClick={() =>setRejectAllStudentModal(true)}
             >
               Reject All
             </button>
@@ -194,6 +196,34 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
           }}
         />
       </div>
+
+      {/* Reject All Students Modal*/}
+      <Modal
+        centered
+        show={rejectAllStudentModal}
+        onHide={() => setRejectAllStudentModal(false)}
+      >
+        <div className="d-flex flex-column justify-content-center align-content-center m-5">
+          <h3>Confirm Deletion🥲</h3>
+          <p>
+            Are you sure you want to Reject No Dues of All Selected Students ?
+          </p>
+          <div className="d-flex gap-4">
+            <Button
+              variant="danger"
+              onClick={() => {
+                rejectAll();
+                setRejectAllStudentModal(false);
+              }}
+            >
+              Yes
+            </Button>
+            <Button onClick={() => setRejectAllStudentModal(false)}>
+              Cancel
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
