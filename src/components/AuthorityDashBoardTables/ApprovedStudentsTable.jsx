@@ -312,10 +312,11 @@ const ApprovedStudentsTable = ({ authorityFromParent }) => {
             className="form-control shadow-sm rounded-3"
             placeholder="Enter your reason here"
             style={{
-              background: "rgba(255, 255, 255, 0.15)",
-              border: "1px solid rgba(255, 255, 255, 0.3)",
-              color: "#fff", // Text color
-              padding: "10px",
+              backgroundColor: "rgba(255, 255, 255, 0.2)", // light glassy background
+              color: "#fff", // white text for visibility
+              border: "1px solid rgba(255, 255, 255, 0.3)", // soft border
+              backdropFilter: "blur(8px)", // frosted glass effect
+              WebkitBackdropFilter: "blur(8px)", // Safari support
             }}
             onChange={(e) => setRejectionReason(e.target.value)}
           />
