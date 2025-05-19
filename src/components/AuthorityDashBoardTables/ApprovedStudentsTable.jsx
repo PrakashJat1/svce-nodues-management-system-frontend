@@ -280,63 +280,71 @@ const ApprovedStudentsTable = ({ authorityFromParent }) => {
         onHide={() => setCustomRejectionModal(false)}
         style={{
           backgroundColor: "rgba(255, 255, 255, 0.05)",
-          backdropFilter: "blur(10px)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
           borderRadius: "20px",
-          border: "1px solid rgba(255,255,255,0.3)",
-          color: "#fff",
+          border: "1px solid rgba(255,255,255,0.2)",
         }}
       >
-        <div
-          className="p-4"
+        <Modal.Header
+          className="border-0"
           style={{
-            background: "rgba(255, 255, 255, 0.15)",
-            borderRadius: "20px",
-            boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            border: "1px solid rgba(255, 255, 255, 0.18)",
+            background: "rgba(255, 255, 255, 0.1)",
+            color: "#fff",
+            borderTopLeftRadius: "20px",
+            borderTopRightRadius: "20px",
           }}
         >
-          <Modal.Header className="border-0">
-            <h4 className="text-white text-center w-100 fw-semibold">
-              ✍️ Enter Custom Reason
-            </h4>
-          </Modal.Header>
+          <h4 className="text-center w-100 fw-semibold mb-0">
+            ✍️ Enter Custom Reason
+          </h4>
+        </Modal.Header>
 
-          <Modal.Body>
-            <input
-              type="text"
-              className="form-control shadow-sm rounded-3"
-              placeholder="Enter your reason here"
-              style={{
-                background: "rgba(255,255,255,0.1)",
-                color: "#fff",
-                border: "1px solid rgba(255,255,255,0.3)",
-              }}
-              onChange={(e) => setRejectionReason(e.target.value)}
-            />
-          </Modal.Body>
+        <Modal.Body
+          style={{
+            background: "rgba(255, 255, 255, 0.1)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+          }}
+        >
+          <input
+            type="text"
+            className="form-control shadow-sm rounded-3 text-white"
+            placeholder="Enter your reason here"
+            style={{
+              background: "rgba(255,255,255,0.15)",
+              border: "1px solid rgba(255,255,255,0.3)",
+            }}
+            onChange={(e) => setRejectionReason(e.target.value)}
+          />
+        </Modal.Body>
 
-          <Modal.Footer className="border-0 d-flex justify-content-end gap-3">
-            <Button
-              variant="danger"
-              className="rounded-pill px-4"
-              onClick={() => {
-                rejectAll(authority);
-                setCustomRejectionModal(false);
-              }}
-            >
-              🚫 Confirm
-            </Button>
-            <Button
-              variant="outline-light"
-              className="rounded-pill"
-              onClick={() => setCustomRejectionModal(false)}
-            >
-              Cancel
-            </Button>
-          </Modal.Footer>
-        </div>
+        <Modal.Footer
+          className="border-0 d-flex justify-content-end gap-3"
+          style={{
+            background: "rgba(255, 255, 255, 0.1)",
+            borderBottomLeftRadius: "20px",
+            borderBottomRightRadius: "20px",
+          }}
+        >
+          <Button
+            variant="danger"
+            className="rounded-pill px-4"
+            onClick={() => {
+              rejectAll(authority);
+              setCustomRejectionModal(false);
+            }}
+          >
+            🚫 Confirm
+          </Button>
+          <Button
+            variant="outline-light"
+            className="rounded-pill"
+            onClick={() => setCustomRejectionModal(false)}
+          >
+            Cancel
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
