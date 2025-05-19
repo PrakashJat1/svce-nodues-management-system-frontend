@@ -8,12 +8,14 @@ import { AgGridReact } from "@ag-grid-community/react";
 import "@ag-grid-community/styles/ag-grid.css";
 import "@ag-grid-community/styles/ag-theme-alpine.css";
 import api from "../../api/axios";
+import RejectStudentNoDuesModal from "../Modals/RejectStudentNoDuesModal";
 
 const PendingStudentsTable = ({ authorityFromParent }) => {
   const [authority, setAuthority] = useState(authorityFromParent);
   const [allPendingStudents, setAllPendingStudents] = useState([]);
   const [pendingStudentsTable, setPendingStudentsTable] = useState([]);
   const [gridApi, setGridApi] = useState(null);
+  const [rejectAllStudentModal,setRejectAllStudentModal] = useState(false);
 
   useEffect(() => {
     if (authorityFromParent) {
@@ -217,7 +219,7 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
             </button>
             <button
               className="btn btn-danger me-lg-5 me-sm-0"
-              onClick={() => rejectAll(authority)}
+              onClick={() => setRejectAllStudentModal(true)}
             >
               Reject All
             </button>
@@ -247,6 +249,10 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
           }}
         />
       </div>
+
+      {
+        rejectAllStudentModal && <RejectStudentNoDuesModal rejectAll = {()=>rejectAll(authority)}/>
+      }
     </>
   );
 };

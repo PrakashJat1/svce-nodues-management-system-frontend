@@ -17,7 +17,6 @@ const AuthorityDasboard = () => {
   const [activeTab, setActiveTab] = useState("Pending");
   const [user, setUser] = useState(null);
   const [authority, setAuthority] = useState(null);
-
   const [allNoDuesStatus, setAllNoDUesStatus] = useState([]);
   const [allDocumentedStudents, setAllDocumentedStudents] = useState(0);
 
@@ -476,7 +475,7 @@ const AuthorityDasboard = () => {
                 <li className="list-group-item d-flex justify-content-between">
                   <strong>Status:</strong>
                   <span className="badge bg-success" id="userStatus">
-                    {user.status ? "Active" : "Deactivate"}
+                    {user.verified ? "Active" : "Deactivate"}
                   </span>
                 </li>
               </ul>
