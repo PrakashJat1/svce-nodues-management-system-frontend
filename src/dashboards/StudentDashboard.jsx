@@ -8,6 +8,7 @@ import { Modal, Form, Button } from "react-bootstrap";
 import api from "../api/axios";
 import logoWithBG from "../assets/NDMSlogoWithBG.png";
 import Loader from "../components/Loader";
+import dummyProfilePhoto from "../assets/dummyProfile.png"
 
 const StudentDashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -588,7 +589,7 @@ const StudentDashboard = () => {
                   src={
                     user.profile_picture_url
                       ? user.profile_picture_url
-                      : "/src/assets/dummyProfile.png"
+                      : dummyProfilePhoto
                   }
                   className="rounded-circle border border-3 border-success w-50 h-75 "
                   alt="Profile Picture"
@@ -613,7 +614,7 @@ const StudentDashboard = () => {
                 <li className="list-group-item d-flex justify-content-between">
                   <strong>Status:</strong>
                   <span className="badge bg-success" id="userStatus">
-                    {student.verified ? "Active" : "Deactivate"}
+                    {user.verified ? "Active" : "Deactivate"}
                   </span>
                 </li>
               </ul>

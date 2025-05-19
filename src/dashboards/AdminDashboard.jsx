@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { Button, Form, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoWithBG from "../assets/NDMSlogoWithBG.png";
+import dummyProfilePhoto from "../assets/dummyProfile.png"
 
 // ag grid
 
@@ -963,7 +964,7 @@ const AdminDashboard = () => {
                       src={
                         admin.profile_picture_url
                           ? admin.profile_picture_url
-                          : "/src/assets/dummyProfile.png"
+                          : dummyProfilePhoto
                       }
                       className="rounded-circle border border-3 border-success w-50 h-75 "
                       alt="Profile Picture"

@@ -10,6 +10,7 @@ import api from "../api/axios";
 import logoWithBG from "../assets/NDMSlogoWithBG.png";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // 🔥 Enables dropdown, modal, collapse, etc.
 import Loader from "../components/Loader";
+import dummyProfilePhoto from "../assets/dummyProfile.png"
 
 const AuthorityDasboard = () => {
   const [loading, setLoading] = useState(true);
@@ -446,7 +447,7 @@ const AuthorityDasboard = () => {
                   src={
                     user.profile_picture_url
                       ? user.profile_picture_url
-                      : "/src/assets/dummyProfile.png"
+                      : dummyProfilePhoto
                   }
                   className="rounded-circle border border-3 border-success w-50 h-75 "
                   alt="Profile Picture"
