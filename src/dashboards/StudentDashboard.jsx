@@ -468,8 +468,6 @@ const StudentDashboard = () => {
                           <td>
                             {e.status === "APPROVED"
                               ? "Best Of Luck For Exam👍"
-                              : e.status === "REJECTED"
-                              ? "REJECTED"
                               : e.remark}
                           </td>
                         </tr>
