@@ -212,7 +212,6 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
           <h3>Please Give Reason of No Dues Rejection</h3>
           <div className="d-flex gap-4">
             <Modal.Body>
-              <form onSubmit={rejectAll(authority)}>
                 <select
                   className="form-select"
                   id="rejectionReason"
@@ -230,11 +229,11 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
                   <option>Internship letter required</option>
                   <option>Please Visit the department</option>
                 </select>
-                <button type="submit" className="btn btn-warning">
-                  Confirm Rejection
-                </button>
-              </form>
             </Modal.Body>
+
+            <Button variant="primary" onClick={() => rejectAll(authority)}>
+              Confirm Rejection
+            </Button>
             <Button
               variant="primary"
               onClick={() => {
@@ -279,7 +278,7 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
           >
             Confirm Rejection
           </Button>
-          <Button onClick={() => setCustomRejectionModal(false)}>Cancel</Button>
+          <Button  onClick={() => setCustomRejectionModal(false)}>Cancel</Button>
         </Modal.Footer>
       </Modal>
     </>

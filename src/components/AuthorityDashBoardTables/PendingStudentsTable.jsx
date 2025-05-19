@@ -261,29 +261,27 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
           <h3>Please Give Reason of No Dues Rejection</h3>
           <div className="d-flex gap-4">
             <Modal.Body>
-              <form onSubmit={rejectAll(authority)}>
-                <select
-                  className="form-select"
-                  id="rejectionReason"
-                  value={rejectionReason}
-                  onChange={(e) => setRejectionReason(e.target.value)}
-                  required
-                >
-                  <option value="" disabled>
-                    Select a reason for rejection
-                  </option>
-                  <option>Fee receipt required</option>
-                  <option>Book return proof required</option>
-                  <option>Fine payment receipt required</option>
-                  <option>Submit project report</option>
-                  <option>Internship letter required</option>
-                  <option>Please Visit the department</option>
-                </select>
-                <button type="submit" className="btn btn-warning">
-                  Confirm Rejection
-                </button>
-              </form>
+              <select
+                className="form-select"
+                id="rejectionReason"
+                value={rejectionReason}
+                onChange={(e) => setRejectionReason(e.target.value)}
+                required
+              >
+                <option value="" disabled>
+                  Select a reason for rejection
+                </option>
+                <option>Fee receipt required</option>
+                <option>Book return proof required</option>
+                <option>Fine payment receipt required</option>
+                <option>Submit project report</option>
+                <option>Internship letter required</option>
+                <option>Please Visit the department</option>
+              </select>
             </Modal.Body>
+            <Button variant="primary" onClick={() => rejectAll(authority)}>
+              Confirm Rejection
+            </Button>
             <Button
               variant="primary"
               onClick={() => {
