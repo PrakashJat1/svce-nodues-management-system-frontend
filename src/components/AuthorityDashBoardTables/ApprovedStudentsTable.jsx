@@ -17,6 +17,8 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
   const [approvedStudentsTable, setApprovedStudentsTable] = useState([]);
   const [gridApi, setGridApi] = useState(null);
   const [rejectAllStudentModal,setRejectAllStudentModal] = useState(false);
+   const [rejectionReason, setRejectionReason] = useState(" ");
+  const [customRejectionModal, setCustomRejectionModal] = useState(false);
 
   useEffect(() => {
     if (authorityFromParent) {
@@ -120,6 +122,9 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
     if (selectedRows.length === 0) {
       toast.warn("Please select students first");
       return;
+    }else if (rejectionReason.trim() === "") {
+      toast.warn("Please give reason of rejection");
+      return;
     }
 
     const selectedStudentIds = allApprovedStudents
@@ -134,7 +139,7 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
       const response = await api.post(
         `/noduesstatus/updateAllNoDuesStatus/${
           authority.id
-        }/${"REJECTED"}`,
+        }/${"REJECTED"}/${rejectionReason}`,
         selectedStudentIds
       );
       if (response.status === 200 && response.data) {
@@ -204,25 +209,78 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
         onHide={() => setRejectAllStudentModal(false)}
       >
         <div className="d-flex flex-column justify-content-center align-content-center m-5">
-          <h3>Confirm Deletion🥲</h3>
-          <p>
-            Are you sure you want to Reject No Dues of All Selected Students ?
-          </p>
+          <h3>Please Give Reason of No Dues Rejection</h3>
           <div className="d-flex gap-4">
+            <Modal.Body>
+              <form onSubmit={rejectAll(authority)}>
+                <select
+                  className="form-select"
+                  id="rejectionReason"
+                  value={rejectionReason}
+                  onChange={(e) => setRejectionReason(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>
+                    Select a reason for rejection
+                  </option>
+                  <option>Fee receipt required</option>
+                  <option>Book return proof required</option>
+                  <option>Fine payment receipt required</option>
+                  <option>Submit project report</option>
+                  <option>Internship letter required</option>
+                  <option>Please Visit the department</option>
+                </select>
+                <button type="submit" className="btn btn-warning">
+                  Confirm Rejection
+                </button>
+              </form>
+            </Modal.Body>
             <Button
-              variant="danger"
+              variant="primary"
               onClick={() => {
-                rejectAll(authority);
                 setRejectAllStudentModal(false);
+                setCustomRejectionModal(true);
               }}
             >
-              Yes
+              Custom
             </Button>
             <Button onClick={() => setRejectAllStudentModal(false)}>
               Cancel
             </Button>
           </div>
         </div>
+      </Modal>
+
+      {/* Custom Rejection Reason  */}
+      <Modal
+        centered
+        show={customRejectionModal}
+        onHide={() => setCustomRejectionModal(false)}
+      >
+        <Modal.Header>
+          <h3>Please Give Reason of No Dues Rejection</h3>
+        </Modal.Header>
+
+        <Modal.Body>
+          <label htmlFor="otp">Enter Custom Reason</label>
+          <input
+            type="text"
+            onChange={(e) => setRejectionReason(e.target.value)}
+          />
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button
+            variant="warning"
+            onClick={() => {
+              rejectAll(authority);
+              setCustomRejectionModal(false);
+            }}
+          >
+            Confirm Rejection
+          </Button>
+          <Button onClick={() => setCustomRejectionModal(false)}>Cancel</Button>
+        </Modal.Footer>
       </Modal>
     </>
   );

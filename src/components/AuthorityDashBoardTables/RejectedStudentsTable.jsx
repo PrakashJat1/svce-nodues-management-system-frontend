@@ -130,7 +130,7 @@ const RejectedStudentsTable = ({authorityFromParent }) => {
       const response = await api.post(
         `/noduesstatus/updateAllNoDuesStatus/${
           authority.id
-        }/${"APPROVED"}`,
+        }/${"APPROVED"}/${""}`,
         selectedStudentIds
       );
       if (response.status === 200 && response.data) {

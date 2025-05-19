@@ -5,40 +5,36 @@ import { Button, Modal } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import api from "../../api/axios";
-import logo from "../../assets/NDMSlogo.png"
+import logo from "../../assets/NDMSlogo.png";
 const Register = () => {
   let navigate = useNavigate();
 
   //student verification
   const [verificationModal, setVerificationModal] = useState(false);
-  const [verificationEmail ,setVerificationEmail] = useState('');
-  const [verificationName ,setVerificationName] = useState('');
+  const [verificationEmail, setVerificationEmail] = useState("");
+  const [verificationName, setVerificationName] = useState("");
   const [OTP, setOTP] = useState(0);
 
   //Register Handler
   const registerHandler = async (values) => {
-
     setVerificationEmail(values.email);
     setVerificationName(values.studentName);
 
     const studentData = {
-      studentName : values.studentName,
-      enrollmentId : values.enrollmentId,
-      fatherName : values.fatherName,
-      email : values.email,
-      password : values.password,
-      mobileNumber : values.mobileNumber,
-      year : values.year,
-      semester : values.semester,
-      branch : values.branch,
-      batch : values.batch
-    }
+      studentName: values.studentName,
+      enrollmentId: values.enrollmentId,
+      fatherName: values.fatherName,
+      email: values.email,
+      password: values.password,
+      mobileNumber: values.mobileNumber,
+      year: values.year,
+      semester: values.semester,
+      branch: values.branch,
+      batch: values.batch,
+    };
 
     try {
-      const response2 = await api.post(
-        "/auth/register",
-        studentData
-      );
+      const response2 = await api.post("/auth/register", studentData);
 
       console.log(response2.data);
 
@@ -46,9 +42,8 @@ const Register = () => {
         toast.error(
           "Student Account is already exist using this email or Enrollment ID"
         );
-      } 
-      else {
-        otpSending(studentData.studentName,studentData.email)
+      } else {
+        otpSending(studentData.studentName, studentData.email);
       }
 
       // resetForm();
@@ -101,11 +96,9 @@ const Register = () => {
         [Yup.ref("password"), null],
         "Password & confirm password must be same"
       ),
-    mobileNumber: Yup.number("It must be a number")
-      .required(),
-      year : Yup.number("It must be a number")
-      .required(),
-      semester : Yup.number().required(),
+    mobileNumber: Yup.number("It must be a number").required(),
+    year: Yup.number("It must be a number").required(),
+    semester: Yup.number().required(),
     branch: Yup.string().required(),
     batch: Yup.number("It should be a number").required(),
   });
@@ -118,19 +111,18 @@ const Register = () => {
       onSubmit: registerHandler,
     });
 
-
   //otpSending
   const otpSending = async (name, email) => {
-    console.log(name,email+" 1234");
+    console.log(name, email + " 1234");
     try {
       //Otp sending
-      const response = await api.post(
-        `/email/emailSending/${name}/${email}`
-      );
+      const response = await api.post(`/email/emailSending/${name}/${email}`);
 
       if (response.data) {
         setVerificationModal(true);
-        toast.success("OTP send successfully. If not get Please check your email address.");
+        toast.success(
+          "OTP send successfully. If not get Please check your email address."
+        );
         return true;
       } else {
         toast.error("Failed to send OTP. Please check your email address.");
@@ -154,9 +146,7 @@ const Register = () => {
 
       console.log(email + " : " + OTP);
 
-      const response = await api.get(
-        `/email/otpVerification/${email}/${OTP}`
-      );
+      const response = await api.get(`/email/otpVerification/${email}/${OTP}`);
       if (response.data) {
         setVerificationModal(false);
         toast.success(
@@ -166,24 +156,18 @@ const Register = () => {
       } else {
         toast.error("Invalid or Expired OTP");
       }
-       console.log(response.data);
+      console.log(response.data);
     } catch (error) {
       toast.error("Error while verifying otp");
       console.log(error);
     }
-
-   
   };
 
   return (
     <>
       <div className="register d-flex flex-wrap flex-lg-nowrap flex-column flex-lg-row rounded-2 p-lg-3 min-vh-100 justify-content-center align-items-center">
         <div className="first-flex d-flex justify-content-center align-items-center w-sm-25">
-          <img
-            src={logo}
-            alt="Login Image"
-            className="w-50 rounded-5"
-          />
+          <img src={logo} alt="Login Image" className="w-50 rounded-5" />
         </div>
 
         <div className="form w-50 mt-3">
@@ -269,7 +253,7 @@ const Register = () => {
                 Password
               </label>
               <input
-              autoComplete="off"
+                autoComplete="off"
                 type="password"
                 className="form-control"
                 id="password"
@@ -289,7 +273,7 @@ const Register = () => {
                 Confirm Password
               </label>
               <input
-              autoComplete="off"
+                autoComplete="off"
                 type="password"
                 className="form-control"
                 id="confirmpassword"
@@ -427,6 +411,7 @@ const Register = () => {
         </div>
       </div>
 
+      {/* Verif OTP Modal  */}
       <Modal
         centered
         show={verificationModal}
@@ -443,13 +428,14 @@ const Register = () => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="success" onClick={() => otpverification(verificationEmail)}>
+          <Button
+            variant="success"
+            onClick={() => otpverification(verificationEmail)}
+          >
             Verify
           </Button>
           <Button
-            onClick={() =>
-              otpSending(verificationName,verificationEmail)
-            }
+            onClick={() => otpSending(verificationName, verificationEmail)}
           >
             Resend
           </Button>
