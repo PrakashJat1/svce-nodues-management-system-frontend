@@ -257,7 +257,7 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
             <Button
               variant="danger"
               onClick={() => {
-                rejectAll();
+                rejectAll(authority);
                 setRejectAllStudentModal(false);
               }}
             >

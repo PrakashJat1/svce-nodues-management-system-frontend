@@ -212,7 +212,7 @@ const ApprovedStudentsTable = ({authorityFromParent }) => {
             <Button
               variant="danger"
               onClick={() => {
-                rejectAll();
+                rejectAll(authority);
                 setRejectAllStudentModal(false);
               }}
             >
