@@ -309,11 +309,13 @@ const ApprovedStudentsTable = ({ authorityFromParent }) => {
         >
           <input
             type="text"
-            className="form-control shadow-sm rounded-3 text-white"
+            className="form-control shadow-sm rounded-3"
             placeholder="Enter your reason here"
             style={{
-              background: "rgba(255,255,255,0.15)",
-              border: "1px solid rgba(255,255,255,0.3)",
+              background: "rgba(255, 255, 255, 0.15)",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              color: "#fff", // Text color
+              padding: "10px",
             }}
             onChange={(e) => setRejectionReason(e.target.value)}
           />
