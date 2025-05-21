@@ -227,7 +227,7 @@ const ApprovedStudentsTable = ({ authorityFromParent }) => {
               required
               style={{ background: "#f8f9fa" }}
             >
-              <option value="" disabled>
+              <option value="" disabled selected>
                 -- Select a reason --
               </option>
               <option>Fee receipt required</option>
