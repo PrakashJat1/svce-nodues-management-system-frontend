@@ -15,7 +15,7 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
   const [pendingStudentsTable, setPendingStudentsTable] = useState([]);
   const [gridApi, setGridApi] = useState(null);
   const [rejectAllStudentModal, setRejectAllStudentModal] = useState(false);
-  const [rejectionReason, setRejectionReason] = useState(" ");
+  const [rejectionReason, setRejectionReason] = useState("");
   const [customRejectionModal, setCustomRejectionModal] = useState(false);
 
   useEffect(() => {
@@ -279,7 +279,7 @@ const PendingStudentsTable = ({ authorityFromParent }) => {
               required
               style={{ background: "#f8f9fa" }}
             >
-              <option value="" disabled selected>
+              <option value="" disabled >
                 -- Select a reason --
               </option>
               <option>Fee receipt required</option>
