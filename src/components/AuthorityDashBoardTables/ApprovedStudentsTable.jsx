@@ -15,7 +15,7 @@ const ApprovedStudentsTable = ({ authorityFromParent }) => {
   const [approvedStudentsTable, setApprovedStudentsTable] = useState([]);
   const [gridApi, setGridApi] = useState(null);
   const [rejectAllStudentModal, setRejectAllStudentModal] = useState(false);
-  const [rejectionReason, setRejectionReason] = useState(" ");
+  const [rejectionReason, setRejectionReason] = useState("");
   const [customRejectionModal, setCustomRejectionModal] = useState(false);
 
   useEffect(() => {
