@@ -711,11 +711,6 @@ const AdminDashboard = () => {
           >
             Add Authority
           </button>
-          <button className="btn btn-secondary">
-            Upload Certificate Template
-          </button>
-          <button className="btn btn-success">Download Report</button>
-          <button className="btn btn-warning">System Logs</button>
         </div>
 
         {/* Users data */}
